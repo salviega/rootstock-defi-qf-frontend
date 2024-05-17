@@ -25,7 +25,7 @@ https://github.com/salviega/rootstock-defi-qf-contracts
 
 ### Rootstock DeFi QF - backend:
 
-xxx
+https://github.com/salviega/rootstock-defi-qf-backend
 
 ## Quick start 🏄
 
