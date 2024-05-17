@@ -1,30 +1,56 @@
-# React + TypeScript + Vite
+# Rootstock DeFi QF - frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bitcoin Meets Solidity - Rootstock Hackathon
 
-Currently, two official plugins are available:
+### 📜 Deployed contracts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Contracts                | Addresses                                  |
+| ------------------------ | ------------------------------------------ |
+| generateProfileId        | 0xE73e05402cC9D7240Ad48545035B0e4CD5D24400 |
+| doCMock                  | 0xfA42898548BeD0894C5E3c23fa4196906C252050 |
+| registryInstance         | 0x66d710B8F25756D66c7fe1E7F9cE74d375863a20 |
+| registryImplementation   | 0x18838e5c9F9FE9963fae87d941F6ac55BF4C7E5a |
+| alloInstance             | 0xe7dA47ac67F04044F7783D528F11cDb309b5D2e2 |
+| alloImplementation       | 0x16B61C6a8E2d9262FE07A527336aB2bCe5FcDdAC |
+| qVSimpleStrategyContract | 0xB6191Eb3Ee9acd82cEbe6D9851D806Db24e3E35D |
+| qVSimpleStrategyContract | 0x3f0A7E94d134F84f6294F5d3277d2b86bdFDF24c |
 
-## Expanding the ESLint configuration
+### Fleek deploy
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+https://many-garage-late.on-fleek.app
 
-- Configure the top-level `parserOptions` property like this:
+### Rootstock DeFi QF - contracts:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+https://github.com/salviega/rootstock-defi-qf-contracts
+
+### Rootstock DeFi QF - backend:
+
+xxx
+
+## Quick start 🏄
+
+Prerequisites: [Node (v21 LTS)](https://nodejs.org/en/download/) and [Git](https://git-scm.com/downloads)
+
+> Clone the repository:
+
+```
+git clone git@github.com:salviega/rootstock-defi-qf-frontend.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+> Install dependencies:
+
+```
+yarn
+```
+
+> Run the project:
+
+```
+yarn dev
+```
+
+## Authors 🏗
+
+[JosCalCor22](https://github.com/JosCalCor22)
+
+[salviega](https://github.com/salviega)
