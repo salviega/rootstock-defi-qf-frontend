@@ -11,8 +11,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.1.1",
+    "@tanstack/react-query": "^5.40.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "viem": "2.x",
+    "wagmi": "^2.9.8"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
