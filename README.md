@@ -27,6 +27,10 @@ https://github.com/salviega/rootstock-defi-qf-contracts
 
 https://github.com/salviega/rootstock-defi-qf-backend
 
+### Rootstock DeFi QF - figma:
+
+https://www.figma.com/proto/EAJ9i3ificRCDTSeUtLH4F/Hackathon-Rootstock?page-id=0%3A1&node-id=10-29&viewport=-7432%2C-2540%2C1.63&t=p55ZQUrYnrD9QOLE-1&scaling=scale-down&starting-point-node-id=1%3A2
+
 ## Quick start 🏄
 
 Prerequisites: [Node (v21 LTS)](https://nodejs.org/en/download/) and [Git](https://git-scm.com/downloads)
