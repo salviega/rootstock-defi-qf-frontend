@@ -11,6 +11,7 @@ import { myContext } from "@/utils/context/context"
 
 /* Layout Components */
 import Home from "../components/dashboard/layout/Home"
+import Admin from "@/components/dashboard/layout/Admin"
 import Faucet from "@/components/dashboard/layout/Faucet"
 import Project from "@/components/dashboard/layout/Project"
 
@@ -28,6 +29,7 @@ export default function Dashboard(): JSX.Element {
           {
             activeLayout === 'home' ? <Home /> : 
             activeLayout === 'faucet' ? <Faucet /> :
+            activeLayout === 'dashboard' ? <Admin /> :
             activeLayout === 'project1' ? <Project item={Projects[0]} /> :
             activeLayout === 'project2' ? <Project item={Projects[1]} /> : <Home />
           }
