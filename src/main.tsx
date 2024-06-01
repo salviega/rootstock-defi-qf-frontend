@@ -9,7 +9,7 @@ import React from 'react';
 import './index.css';
 import App from './App.tsx';
 import '@rainbow-me/rainbowkit/styles.css';
-import { Config } from './components/ui/walletbtn/Config';
+import { Config } from './components/ui/walletBtn/Config.ts';
 
 const queryClient = new QueryClient();
 
@@ -17,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <WagmiProvider config={Config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider theme={lightTheme({
+        <RainbowKitProvider 
+        locale="en-US"
+        theme={lightTheme({
           accentColorForeground: '#ffffff',
           accentColor: '#037171',
           borderRadius: 'large',

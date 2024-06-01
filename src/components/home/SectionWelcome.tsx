@@ -10,7 +10,7 @@ export default function SectionWelcome (): JSX.Element {
         </div>
         <div className="flex flex-col justify-center items-end gap-5 pr-[40px] w-2/4">
           <p className="text-pricolor text-end text-fontL max-w-lg">Adopt Quadratic Voting today to ensure decisions that best reflect everyone's values and priorities. Make your vote more fair and representative!</p>
-          <Button text="Join Now" sizeFont="L" link="/dashboard"/>
+          <Button text="Join Now" sizeFont="L" link="/dashboard" color="pricolor"/>
         </div>
       </section>
     </section>
