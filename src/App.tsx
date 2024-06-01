@@ -1,8 +1,8 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import './App.css';
 
 import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
 			<HashRouter>
 				<Routes>
 						<Route path='/' element={<Home />} />
+						<Route path='/dashboard' element={<Dashboard />} />
 				</Routes>
 			</HashRouter>
 			<ToastContainer />
