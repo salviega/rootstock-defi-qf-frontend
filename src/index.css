@@ -11,6 +11,8 @@
   --pricolor: #F6F7F8;
   --secdcolor: #21212D;
   --thircolor: #037171;
+
+  --extracolor: rgba(0, 0, 0, 0.25);
 }
 
 h1{
@@ -63,6 +65,10 @@ p, a, li, span{
   gap: 50px;
 }
 
+.aside__container{
+  box-shadow: 0 0 10px 0 #21212D;
+}
+
 .item-view{
   transition: all .3s ease;
 }
@@ -71,4 +77,9 @@ p, a, li, span{
   background-color: rgba(246, 247, 248, .1);
   padding: 12px;
   cursor: pointer;
+}
+
+.dashboard__container--nav{
+  border: 1px solid var(--extracolor);
+  box-shadow: 0 0 10px 0 var(--extracolor);
 }
