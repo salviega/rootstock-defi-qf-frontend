@@ -45,6 +45,7 @@ p, a, li, span{
   font-family: 'Segoe UI', sans-serif;
   text-decoration: none;
   font-weight: 300;
+  list-style: none;
 }
 
 /* Classes */
@@ -60,4 +61,14 @@ p, a, li, span{
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 50px;
+}
+
+.item-view{
+  transition: all .3s ease;
+}
+
+.item-view:hover, .item-view:focus, .item-view:active{
+  background-color: rgba(246, 247, 248, .1);
+  padding: 12px;
+  cursor: pointer;
 }
