@@ -24,7 +24,9 @@ export default {
       colors: {
         pricolor: '#F6F7F8',
         secdcolor: '#21212D',
-        thircolor: '#037171'
+        thircolor: '#037171',
+        extracolor: 'rgba(246, 247, 248, .1)',
+        textdesc: 'rgba(0, 0, 0, .5)',
       }
     },
   },
