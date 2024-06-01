@@ -12,7 +12,10 @@ import IconItem3 from '../../../assets/svg/asideComponent/item3.svg'
 
 export default function Views(): JSX.Element {
   const { activeLayout, setActiveLayout } = useContext(myContext);
-  const activeItem = activeLayout === 'home' ? 'bg-extracolor p-3' : 'item-view';
+
+  const activeHome = activeLayout === 'home' ? 'bg-extracolor p-3' : 'item-view';
+  const activeFaucet = activeLayout === 'faucet' ? 'bg-extracolor p-3' : 'item-view';
+  const activeDashboard = activeLayout === 'dashboard' ? 'bg-extracolor p-3' : 'item-view';
 
   return(
     <section className="flex flex-col items-start gap-3 w-full px-8">
@@ -25,7 +28,7 @@ export default function Views(): JSX.Element {
         onClick={() => {
           setActiveLayout('home');
         }}
-        className={`${activeItem} flex items-center w-full gap-3 rounded-lg`}>
+        className={`${activeHome} flex items-center w-full gap-3 rounded-lg`}>
           <img src={IconItem1} alt="Item 1" />
           <span className="text-pricolor text-fontL">Home</span>
         </NavLink>
@@ -35,7 +38,7 @@ export default function Views(): JSX.Element {
         onClick={() => {
           setActiveLayout('faucet');
         }}
-        className='item-view flex items-center w-full gap-3 rounded-lg'>
+        className={`${activeFaucet} flex items-center w-full gap-3 rounded-lg`}>
           <img src={IconItem2} alt="Item 2" />
           <span className="text-pricolor text-fontL">Faucet</span>
         </NavLink>
@@ -45,7 +48,7 @@ export default function Views(): JSX.Element {
         onClick={() => {
           setActiveLayout('dashboard');
         }}
-        className='item-view flex items-center w-full gap-3 rounded-lg'>
+        className={`${activeDashboard} flex items-center w-full gap-3 rounded-lg`}>
           <img src={IconItem3} alt="Item 3" />
           <span className="text-pricolor text-fontL">Dashboard</span>
         </NavLink>
