@@ -9,7 +9,8 @@ import { myContext } from './utils/context/context';
 function App() {
 	const [activeLayout, setActiveLayout] = useState('home');
 	const [isClicked, setIsClicked] = useState(0);
-	const value = { activeLayout, setActiveLayout, isClicked, setIsClicked };
+	const [activePopUp, setActivePopUp] = useState(false);
+	const value = { activeLayout, setActiveLayout, isClicked, setIsClicked, activePopUp, setActivePopUp };
 	
   return (
     <>
