@@ -12,6 +12,9 @@ import { myContext } from "@/utils/context/context"
 /* Layout Components */
 import Home from "../components/dashboard/layout/Home"
 import Faucet from "@/components/dashboard/layout/Faucet"
+import Project from "@/components/dashboard/layout/Project"
+
+import Projects from "@/utils/projects/Projects.ts"
 
 export default function Dashboard(): JSX.Element {
   const { activeLayout } = useContext(myContext);
@@ -23,7 +26,10 @@ export default function Dashboard(): JSX.Element {
         <Nav />
         <Layout>
           {
-            activeLayout === 'home' ? <Home /> : <Faucet />
+            activeLayout === 'home' ? <Home /> : 
+            activeLayout === 'faucet' ? <Faucet /> :
+            activeLayout === 'project1' ? <Project item={Projects[0]} /> :
+            activeLayout === 'project2' ? <Project item={Projects[1]} /> : <Home />
           }
         </Layout>
       </section>
