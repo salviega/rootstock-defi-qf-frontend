@@ -5,10 +5,10 @@ import { NavLink } from 'react-router-dom'
 /* Components */
 import { myContext } from '@/utils/context/context'
 
+import AddProject from '../../../assets/svg/asideComponent/addIcon.svg'
 /* Assets */
 import IconProject1 from '../../../assets/svg/asideComponent/LogoProject1.svg'
 import IconProject2 from '../../../assets/svg/asideComponent/LogoProject2.svg'
-import AddProject from '../../../assets/svg/asideComponent/addIcon.svg'
 
 export default function Projects(): JSX.Element {
 	const { activeLayout, setActiveLayout } = useContext(myContext)

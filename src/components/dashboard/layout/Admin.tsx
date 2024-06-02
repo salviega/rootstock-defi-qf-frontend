@@ -1,6 +1,7 @@
 import { useContext } from 'react'
-import { myContext } from '@/utils/context/context'
+
 import Card from '@/components/ui/cardFaucet/Card'
+import { myContext } from '@/utils/context/context'
 
 export default function DashboardAdmin(): JSX.Element {
 	const { activePopUp, setActivePopUp } = useContext(myContext)

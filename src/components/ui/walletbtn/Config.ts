@@ -1,5 +1,6 @@
-import { getDefaultConfig } from '@rainbow-me/rainbowkit'
 import { arbitrum, base, mainnet, optimism, polygon } from 'wagmi/chains'
+
+import { getDefaultConfig } from '@rainbow-me/rainbowkit'
 
 export const Config = getDefaultConfig({
 	appName: 'RainbowKit demo',

@@ -1,5 +1,5 @@
-import line1 from '../../assets/img/upperdottedline.png'
 import line2 from '../../assets/img/lowerdottedline.png'
+import line1 from '../../assets/img/upperdottedline.png'
 
 export default function WhyUs(): JSX.Element {
 	return (

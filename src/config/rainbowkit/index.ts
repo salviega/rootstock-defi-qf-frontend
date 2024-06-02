@@ -1,5 +1,7 @@
 import { getDefaultConfig } from '@rainbow-me/rainbowkit'
+
 import { RAINBOW_KIT_APP_NAME } from '../commons'
+
 import { rsktestnet } from './chains'
 
 export const rainbowkitConfig = () => {
@@ -11,7 +13,7 @@ export const rainbowkitConfig = () => {
 
 	return getDefaultConfig({
 		appName: RAINBOW_KIT_APP_NAME,
-		projectId: projectId,
+		projectId,
 		chains: [rsktestnet]
 	})
 }

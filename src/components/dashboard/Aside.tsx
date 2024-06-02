@@ -1,7 +1,7 @@
-import Logo from './Aside/Logo'
-import Views from './Aside/Views'
-import Projects from './Aside/Projects'
 import Connection from './Aside/Connection'
+import Logo from './Aside/Logo'
+import Projects from './Aside/Projects'
+import Views from './Aside/Views'
 
 export default function Aside(): JSX.Element {
 	return (

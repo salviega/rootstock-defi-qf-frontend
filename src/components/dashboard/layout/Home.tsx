@@ -1,9 +1,9 @@
+import line1 from '../../../assets/svg/Arrow1.svg'
 import IconStep1 from '../../../assets/svg/homeComponet/step1.svg'
 import IconStep2 from '../../../assets/svg/homeComponet/step2.svg'
 import IconStep3 from '../../../assets/svg/homeComponet/step3.svg'
 import IconStep4 from '../../../assets/svg/homeComponet/step4.svg'
 import IconStep5 from '../../../assets/svg/homeComponet/step5.svg'
-import line1 from '../../../assets/svg/Arrow1.svg'
 
 export default function Home(): JSX.Element {
 	return (

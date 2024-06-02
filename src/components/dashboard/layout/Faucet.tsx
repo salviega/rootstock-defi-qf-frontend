@@ -1,12 +1,11 @@
 /* Hooks */
 import { useContext } from 'react'
 
-/* Context */
-import { myContext } from '@/utils/context/context'
-
 /* Components */
 import Card from '@/components/ui/cardFaucet/Card'
 import ToggleFaucet from '@/components/ui/toggleFaucet/ToggleFaucet'
+/* Context */
+import { myContext } from '@/utils/context/context'
 
 export default function Faucet(): JSX.Element {
 	const { isClicked } = useContext(myContext)

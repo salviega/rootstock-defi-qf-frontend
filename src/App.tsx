@@ -1,9 +1,9 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
 import { useState } from 'react'
+import { HashRouter, Route,Routes } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
-import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
 import { myContext } from './utils/context/context'
 
 function App() {

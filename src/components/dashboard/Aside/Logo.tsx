@@ -1,5 +1,6 @@
-import LogoSVG from '../../../assets/svg/asideComponent/Logo.svg'
 import { Link } from 'react-router-dom'
+
+import LogoSVG from '../../../assets/svg/asideComponent/Logo.svg'
 
 export default function Logo(): JSX.Element {
 	return (

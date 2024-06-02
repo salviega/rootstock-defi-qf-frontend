@@ -1,8 +1,7 @@
 import ImgProject1 from '../../assets/img/Img-Project1.png'
 import ImgProject2 from '../../assets/img/Img-Project2.png'
-
-import IconTwitter from '../../assets/svg/projectsComponents/IconTwitter.svg'
 import IconGithub from '../../assets/svg/projectsComponents/IconGithub.svg'
+import IconTwitter from '../../assets/svg/projectsComponents/IconTwitter.svg'
 import IconWebsite from '../../assets/svg/projectsComponents/IconWebsite.svg'
 
 interface itemsValue {

@@ -2,9 +2,9 @@ import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import ButtonWallet from '@/components/ui/walletbtn/ButtonWallet'
+import { myContext } from '@/utils/context/context'
 
 import Button from '../Button'
-import { myContext } from '@/utils/context/context'
 
 interface Props {
 	number: number

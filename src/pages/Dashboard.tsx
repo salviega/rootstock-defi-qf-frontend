@@ -3,19 +3,17 @@ import { useContext } from 'react'
 
 /* Dashboard Components */
 import Aside from '@/components/dashboard/Aside'
-import Nav from '@/components/dashboard/Nav'
 import Layout from '@/components/dashboard/Layout'
-
-/* Context */
-import { myContext } from '@/utils/context/context'
-
-/* Layout Components */
-import Home from '../components/dashboard/layout/Home'
 import Admin from '@/components/dashboard/layout/Admin'
 import Faucet from '@/components/dashboard/layout/Faucet'
 import Project from '@/components/dashboard/layout/Project'
-
+import Nav from '@/components/dashboard/Nav'
+/* Context */
+import { myContext } from '@/utils/context/context'
 import Projects from '@/utils/projects/Projects.ts'
+
+/* Layout Components */
+import Home from '../components/dashboard/layout/Home'
 
 export default function Dashboard(): JSX.Element {
 	const { activeLayout } = useContext(myContext)
