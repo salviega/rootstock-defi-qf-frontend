@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
-import ButtonWallet from '@/components/ui/walletBtn/ButtonWallet'
+import ButtonWallet from '@/components/ui/walletbtn/ButtonWallet'
 
 import Button from '../Button'
 import { myContext } from '@/utils/context/context'
