@@ -57,7 +57,7 @@ export default function Card(props: Props) {
 					</div>
 					<Button
 						color='thircolor'
-						disabled={erc20DetailsFetched}
+						// disabled={erc20DetailsFetched}
 						sizeFont='L'
 						text='Mint'
 						hoverBgColor='thircolor'

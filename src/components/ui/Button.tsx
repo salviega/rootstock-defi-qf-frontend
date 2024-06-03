@@ -5,7 +5,7 @@ interface Props {
 	link?: string
 	text: string
 	textColor?: string
-	hoverBgColor: string
+	hoverBgColor?: string
 	hoverTextColor?: string
 	onClick?: () => Promise<void>
 }
