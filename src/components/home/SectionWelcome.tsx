@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import Button from '../ui/Button'
 
 export default function SectionWelcome(): JSX.Element {
@@ -21,12 +23,14 @@ export default function SectionWelcome(): JSX.Element {
 						everyone's values and priorities. Make your vote more fair and
 						representative!
 					</p>
-					<Button
-						text='Join Now'
-						sizeFont='L'
-						link='/dashboard'
-						color='pricolor'
-					/>
+					<Link to={`/dashboard`}>
+						<Button
+							bgColor='thircolor'
+							color='white'
+							text='Join Now'
+							sizeFont='L'
+						/>
+					</Link>
 				</div>
 			</section>
 		</section>

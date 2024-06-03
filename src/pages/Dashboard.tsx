@@ -1,22 +1,43 @@
-/* Hooks */
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useAccount } from 'wagmi'
 
-/* Dashboard Components */
 import Aside from '@/components/dashboard/Aside'
 import Layout from '@/components/dashboard/Layout'
 import Admin from '@/components/dashboard/layout/Admin'
 import Faucet from '@/components/dashboard/layout/Faucet'
 import Project from '@/components/dashboard/layout/Project'
 import Nav from '@/components/dashboard/Nav'
-/* Context */
+import { AppDispatch, useAppSelector } from '@/store'
+import { getERC20Details } from '@/store/thunks/erc20details.thunk'
+import { getLastRound } from '@/store/thunks/round.thunk'
 import { myContext } from '@/utils/context/context'
 import Projects from '@/utils/projects/Projects.ts'
 
-/* Layout Components */
 import Home from '../components/dashboard/layout/Home'
 
 export default function Dashboard(): JSX.Element {
-	const { activeLayout } = useContext(myContext)
+	const { activeLayout, setActiveLayout } = useContext(myContext)
+
+	const { address } = useAccount()
+
+	const dispatch = useDispatch<AppDispatch>()
+
+	const lastRoundFetched = useAppSelector(state => state.round.lastRoundFetched)
+
+	useEffect(() => {
+		if (address) {
+			dispatch(getERC20Details(address as string))
+		} else {
+			setActiveLayout('home')
+		}
+
+		if (!lastRoundFetched) {
+			dispatch(getLastRound())
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [address])
 
 	return (
 		<main className='flex gap-5 w-full h-screen p-3'>

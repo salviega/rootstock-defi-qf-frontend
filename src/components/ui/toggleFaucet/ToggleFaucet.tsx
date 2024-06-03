@@ -1,12 +1,12 @@
-import { useContext,useState } from 'react'
+import { useContext, useState } from 'react'
 
 import { myContext } from '@/utils/context/context'
 
 export default function ToggleFaucet(): JSX.Element {
+	const { setIsClicked } = useContext(myContext)
+
 	const [isMint, setIsMint] = useState(true)
 	const [isApprove, setIsApprove] = useState(false)
-
-	const { setIsClicked } = useContext(myContext)
 
 	return (
 		<div className='flex w-fit border-2 border-secdcolor rounded-lg'>

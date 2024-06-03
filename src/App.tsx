@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import { HashRouter, Route,Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
 import { myContext } from './utils/context/context'
+
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
 	const [activeLayout, setActiveLayout] = useState('home')

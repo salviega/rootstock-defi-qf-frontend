@@ -7,11 +7,11 @@ import { lightTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { rainbowkitConfig } from './config/rainbowkit/index.ts'
+import { store } from './store/index.ts'
 import App from './App.tsx'
 
 import './index.css'
 import '@rainbow-me/rainbowkit/styles.css'
-import { store } from './store/index.ts'
 
 const queryClient = new QueryClient()
 

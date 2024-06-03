@@ -1,6 +1,7 @@
 /* Hooks */
 import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useAccount } from 'wagmi'
 
 /* Components */
 import { myContext } from '@/utils/context/context'
@@ -11,6 +12,8 @@ import IconItem2 from '../../../assets/svg/asideComponent/item2.svg'
 import IconItem3 from '../../../assets/svg/asideComponent/item3.svg'
 
 export default function Views(): JSX.Element {
+	const { address } = useAccount()
+
 	const { activeLayout, setActiveLayout } = useContext(myContext)
 
 	const activeHome = activeLayout === 'home' ? 'bg-extracolor p-3' : 'item-view'
@@ -35,18 +38,18 @@ export default function Views(): JSX.Element {
 					<img src={IconItem1} alt='Item 1' />
 					<span className='text-pricolor text-fontL'>Home</span>
 				</NavLink>
-
-				<NavLink
-					to='/dashboard'
-					onClick={() => {
-						setActiveLayout('faucet')
-					}}
-					className={`${activeFaucet} flex items-center w-full gap-3 rounded-lg`}
-				>
-					<img src={IconItem2} alt='Item 2' />
-					<span className='text-pricolor text-fontL'>Faucet</span>
-				</NavLink>
-
+				{address && (
+					<NavLink
+						to='/dashboard'
+						onClick={() => {
+							setActiveLayout('faucet')
+						}}
+						className={`${activeFaucet} flex items-center w-full gap-3 rounded-lg`}
+					>
+						<img src={IconItem2} alt='Item 2' />
+						<span className='text-pricolor text-fontL'>Faucet</span>
+					</NavLink>
+				)}
 				<NavLink
 					to='/dashboard'
 					onClick={() => {
