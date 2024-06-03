@@ -50,7 +50,22 @@ export default function Nav(): JSX.Element {
 						State Round
 					</span>
 				</div>
-				<p className='text-thircolor text-fontM'>Completed</p>
+				<div className='flex items-center gap-2'>
+					<div
+						className={`size-2 rounded-full ${
+							new Date() > registrationStartTime &&
+							new Date() < registrationEndTime
+								? 'bg-green-700'
+								: 'bg-red-700'
+						}`}
+					></div>
+					{new Date() > registrationStartTime &&
+					new Date() < registrationEndTime ? (
+						<p className='text-thircolor text-fontM'>Opened</p>
+					) : (
+						<p className='text-thircolor text-fontM'>Closed</p>
+					)}
+				</div>
 			</li>
 			<li>
 				<div className='w-fit pr-5 border-b-2 border-secdcolor'>
@@ -58,7 +73,9 @@ export default function Nav(): JSX.Element {
 						Total In Pool
 					</span>
 				</div>
-				<p className='text-thircolor text-fontM'>2.800 DAI</p>
+				<p className='text-thircolor text-fontM'>
+					{`${lastRound.totalPool || 0} Doc`}
+				</p>
 			</li>
 			<li>
 				<div className='w-fit pr-5 border-b-2 border-secdcolor'>
@@ -66,7 +83,7 @@ export default function Nav(): JSX.Element {
 						Matching Pool
 					</span>
 				</div>
-				<p className='text-thircolor text-fontM'>1000 DAI</p>
+				<p className='text-thircolor text-fontM'>{`${lastRound.machingPool || 0} Doc`}</p>
 			</li>
 			<li>
 				<div className='w-fit pr-5 border-b-2 border-secdcolor'>
@@ -74,7 +91,7 @@ export default function Nav(): JSX.Element {
 						Total Donations
 					</span>
 				</div>
-				<p className='text-thircolor text-fontM'>1</p>
+				<p className='text-thircolor text-fontM'>{`${lastRound.donations || 0} Doc`}</p>
 			</li>
 		</nav>
 	)

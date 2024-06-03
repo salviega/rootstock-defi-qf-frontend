@@ -13,13 +13,14 @@ export async function storeFile(file: File): Promise<string> {
 		const formData = new FormData()
 		formData.append('file', file)
 
-		const response = await fetch(`${getAccessToken()}/uploadFile`, {
+		const response = await fetch(`${getAccessToken()}/ipfs/store-image`, {
 			body: formData,
 			method: 'POST'
 		})
 
-		const result = await response.text()
-		return `${IPFS_GATEWAY}/${result}`
+		const url = await response.text()
+
+		return url
 	} catch (error) {
 		console.error('Error uploading file:', error)
 		throw error
@@ -28,13 +29,16 @@ export async function storeFile(file: File): Promise<string> {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function storeObject(object: any): Promise<string> {
-	const response: Response = await fetch(`${getAccessToken()}/uploadJson`, {
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(object),
-		method: 'POST'
-	})
+	const response: Response = await fetch(
+		`${getAccessToken()}/ipfs/store-any-object`,
+		{
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(object),
+			method: 'POST'
+		}
+	)
 
 	if (!response.ok) {
 		throw new Error(
@@ -42,7 +46,7 @@ export async function storeObject(object: any): Promise<string> {
 		)
 	}
 
-	const cid: string = await response.text()
+	const url: string = await response.text()
 
-	return `${IPFS_GATEWAY}/${cid}`
+	return url
 }
