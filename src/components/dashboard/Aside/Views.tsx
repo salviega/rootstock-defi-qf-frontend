@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
+import { QUADRIKCHAIN_ADMIN_ADDRESS } from '@/constants'
 /* Components */
 import { myContext } from '@/utils/context/context'
 
@@ -50,16 +51,18 @@ export default function Views(): JSX.Element {
 						<span className='text-pricolor text-fontL'>Faucet</span>
 					</NavLink>
 				)}
-				<NavLink
-					to='/dashboard'
-					onClick={() => {
-						setActiveLayout('dashboard')
-					}}
-					className={`${activeDashboard} flex items-center w-full gap-3 rounded-lg`}
-				>
-					<img src={IconItem3} alt='Item 3' />
-					<span className='text-pricolor text-fontL'>Dashboard</span>
-				</NavLink>
+				{QUADRIKCHAIN_ADMIN_ADDRESS === address && (
+					<NavLink
+						to='/dashboard'
+						onClick={() => {
+							setActiveLayout('dashboard')
+						}}
+						className={`${activeDashboard} flex items-center w-full gap-3 rounded-lg`}
+					>
+						<img src={IconItem3} alt='Item 3' />
+						<span className='text-pricolor text-fontL'>Dashboard</span>
+					</NavLink>
+				)}
 			</nav>
 		</section>
 	)
