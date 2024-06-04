@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useAccount } from 'wagmi'
 
 import Aside from '@/components/dashboard/Aside'
+import CreateProject from '@/components/dashboard/CreateProject'
 import Layout from '@/components/dashboard/Layout'
 import Admin from '@/components/dashboard/layout/Admin'
 import Faucet from '@/components/dashboard/layout/Faucet'
@@ -10,7 +11,6 @@ import Project from '@/components/dashboard/layout/Project'
 import Nav from '@/components/dashboard/Nav'
 import { Round } from '@/models/round.model'
 import { AppDispatch, useAppSelector } from '@/store'
-import { setRound } from '@/store/slides/roundslice'
 import { getERC20Details } from '@/store/thunks/erc20details.thunk'
 import { getLastRound, getRounds } from '@/store/thunks/round.thunk'
 import { myContext } from '@/utils/context/context'
@@ -23,6 +23,8 @@ export default function Dashboard(): JSX.Element {
 	const { address } = useAccount()
 
 	const dispatch = useDispatch<AppDispatch>()
+
+	const lastRound: Round = useAppSelector(state => state.round.lastRound)
 
 	const lastRoundFetched: boolean = useAppSelector(
 		state => state.round.lastRoundFetched
@@ -62,6 +64,8 @@ export default function Dashboard(): JSX.Element {
 						<Faucet />
 					) : activeLayout === 'dashboard' ? (
 						<Admin />
+					) : activeLayout === 'create a new project' ? (
+						<CreateProject round={lastRound} />
 					) : (
 						<Home />
 					)}

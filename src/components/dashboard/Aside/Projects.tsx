@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useAccount } from 'wagmi'
 
+import { QUADRIKCHAIN_ADMIN_ADDRESS } from '@/constants'
 import { Project } from '@/models/project.model'
 import { Round } from '@/models/round.model'
 import { useAppSelector } from '@/store'
@@ -15,6 +17,8 @@ import Timer from './Timer'
 
 export default function Projects(): JSX.Element {
 	const { activeLayout, setActiveLayout } = useContext(myContext)
+
+	const { address } = useAccount()
 
 	const [allocationEndTime, setAllocationEndTime] = useState<Date>(new Date())
 	const [registrationEndTime, setRegistrationEndTime] = useState<Date>(
@@ -81,16 +85,27 @@ export default function Projects(): JSX.Element {
 						<span className='text-pricolor text-fontM'>{project.name}</span>
 					</NavLink>
 				))}
-				<NavLink
-					to='/dashboard'
-					onClick={() => {
-						setActiveLayout('create-project')
-					}}
-					className={`${activeCreateProject} flex items-center w-full gap-3 rounded-lg`}
-				>
-					<img src={AddProject} alt='Item 3' />
-					<span className='text-pricolor text-fontM'>CREATE A NEW PROJECT</span>
-				</NavLink>
+				<>
+					{/* {!lastRound.projects?.some(
+						projects => projects.recipientId === address
+					) &&
+						new Date() > registrationStartTime &&
+						new Date() < registrationEndTime &&
+						address !== QUADRIKCHAIN_ADMIN_ADDRESS && ( */}
+					<NavLink
+						to='/dashboard'
+						onClick={() => {
+							setActiveLayout('create a new project')
+						}}
+						className={`${activeCreateProject} flex items-center w-full gap-3 rounded-lg`}
+					>
+						<img src={AddProject} alt='Item 3' />
+						<span className='text-pricolor text-fontM'>
+							CREATE A NEW PROJECT
+						</span>
+					</NavLink>
+					{/* )} */}
+				</>
 			</nav>
 		</section>
 	)

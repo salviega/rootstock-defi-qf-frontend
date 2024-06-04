@@ -26,11 +26,11 @@ export const createProject = createAsyncThunk(
 	async (
 		{
 			address,
-			navigate,
+			setActiveLayout,
 			projectDto
 		}: {
 			address: string
-			navigate: NavigateFunction
+			setActiveLayout: (newActiveLayout: string) => void
 			projectDto: ProjectDto
 		},
 		{ dispatch, getState }
@@ -91,7 +91,7 @@ export const createProject = createAsyncThunk(
 
 			dispatch(setRound(updatedRound))
 			dispatch(setIsLoading(false))
-			navigate('/app/projects')
+			setActiveLayout('home')
 			toast.success('Project created')
 		} catch (error) {
 			console.error('❌ ', error)
