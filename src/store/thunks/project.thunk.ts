@@ -2,6 +2,7 @@ import { BytesLike, ethers, ZeroAddress } from 'ethers'
 import { NavigateFunction } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+import { ALLO_CONTRACT_ADDRESS } from '@/constants'
 import { getFrontendSigner } from '@/helpers'
 import { getContracts } from '@/helpers/contracts'
 import { storeFile, storeObject } from '@/helpers/pinata'
@@ -20,6 +21,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { setRound } from '../slides/roundslice'
 import { setIsLoading } from '../slides/uiSlice'
 import { RootState } from '..'
+
+const abi = ['function registerRecipient(uint256 _poolId, bytes _data)']
+
+const iface = new ethers.Interface(abi)
 
 export const createProject = createAsyncThunk(
 	'project/createProject',
@@ -80,10 +85,30 @@ export const createProject = createAsyncThunk(
 				recipientDataArray
 			)
 
-			const registerRecipientTx = await allo
-				.connect(web3Signer)
-				.registerRecipient(round.poolId, recipientData, { gasLimit: GAS_LIMIT })
+			const data = iface.encodeFunctionData('registerRecipient', [
+				round.poolId,
+				recipientData
+			])
+
+			const transactionParameters = {
+				to: ALLO_CONTRACT_ADDRESS,
+				from: address,
+				gasLimit: 3000000,
+				data
+			}
+
+			console.log('Sending transaction...')
+			const registerRecipientTx = await web3Signer.sendTransaction(
+				transactionParameters
+			)
+
+			console.log('Transaction sent...')
 			await registerRecipientTx.wait()
+
+			// const registerRecipientTx = await allo
+			// 	.connect(web3Signer)
+			// 	.registerRecipient(round.poolId, recipientData, { gasLimit: GAS_LIMIT })
+			// await registerRecipientTx.wait()
 
 			const updatedProjects = [...round.projects, project]
 			const updatedRound: Round = { ...round, projects: updatedProjects }

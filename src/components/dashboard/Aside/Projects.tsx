@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
 import { QUADRIKCHAIN_ADMIN_ADDRESS } from '@/constants'
-import { Project } from '@/models/project.model'
+import { Project as ProjectModel } from '@/models/project.model'
 import { Round } from '@/models/round.model'
 import { useAppSelector } from '@/store'
 import { convertTimestampToDate } from '@/utils'
@@ -39,7 +39,7 @@ export default function Projects(): JSX.Element {
 		state => state.round.roundsFetched
 	)
 
-	const projects: Project[] = lastRound.projects
+	const projects: ProjectModel[] = lastRound.projects
 
 	const getStates = async () => {
 		setAllocationEndTime(
@@ -57,10 +57,6 @@ export default function Projects(): JSX.Element {
 		getStates()
 	}, [lastRound])
 
-	const activeProject1 =
-		activeLayout === 'project1' ? 'bg-extracolor p-3' : 'item-view'
-	const activeProject2 =
-		activeLayout === 'project2' ? 'bg-extracolor p-3' : 'item-view'
 	const activeCreateProject =
 		activeLayout === 'create-project' ? 'bg-extracolor p-3' : 'item-view'
 
@@ -72,7 +68,7 @@ export default function Projects(): JSX.Element {
 			<Timer />
 
 			<nav className='flex flex-col gap-3 w-full'>
-				{projects.map((project: Project, index: number) => (
+				{projects.map((project: ProjectModel, index: number) => (
 					<NavLink
 						to='/dashboard'
 						className={`${activeCreateProject} flex items-center w-full gap-3 rounded-lg`}
@@ -82,29 +78,32 @@ export default function Projects(): JSX.Element {
 						}}
 					>
 						<img src={project.logo} alt='Item 1' />
-						<span className='text-pricolor text-fontM'>{project.name}</span>
+						<span className={`${activeCreateProject} text-pricolor text-fontM`}>
+							{project.name}
+						</span>
 					</NavLink>
 				))}
 				<>
-					{/* {!lastRound.projects?.some(
-						projects => projects.recipientId === address
-					) &&
+					{address &&
+						!lastRound.projects?.some(
+							projects => projects.recipientId === address
+						) &&
 						new Date() > registrationStartTime &&
 						new Date() < registrationEndTime &&
-						address !== QUADRIKCHAIN_ADMIN_ADDRESS && ( */}
-					<NavLink
-						to='/dashboard'
-						onClick={() => {
-							setActiveLayout('create a new project')
-						}}
-						className={`${activeCreateProject} flex items-center w-full gap-3 rounded-lg`}
-					>
-						<img src={AddProject} alt='Item 3' />
-						<span className='text-pricolor text-fontM'>
-							CREATE A NEW PROJECT
-						</span>
-					</NavLink>
-					{/* )} */}
+						address !== QUADRIKCHAIN_ADMIN_ADDRESS && (
+							<NavLink
+								to='/dashboard'
+								onClick={() => {
+									setActiveLayout('create a new project')
+								}}
+								className={`${activeCreateProject} flex items-center w-full gap-3 rounded-lg`}
+							>
+								<img src={AddProject} alt='Item 3' />
+								<span className='text-pricolor text-fontM'>
+									CREATE A NEW PROJECT
+								</span>
+							</NavLink>
+						)}
 				</>
 			</nav>
 		</section>

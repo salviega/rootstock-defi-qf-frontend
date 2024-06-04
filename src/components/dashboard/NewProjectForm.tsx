@@ -8,12 +8,6 @@ import { ProjectDto } from '@/models/project.model'
 import { createProject } from '@/store/thunks/project.thunk'
 import { myContext } from '@/utils/context/context'
 
-const abi = [
-	'function createPoolWithCustomStrategy(bytes32 _profileId, address _strategy, bytes _initStrategyData, address _token, uint256 _amount, (uint256 protocol, string pointer) _metadata, address[] _managers)'
-]
-
-const iface = new ethers.Interface(abi)
-
 type Props = {
 	dispatch: AppThunkDispatch
 	isLoading: boolean

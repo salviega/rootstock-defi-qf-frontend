@@ -48,9 +48,15 @@ export default function Project(props: Props): JSX.Element {
 					<div>
 						<h4>Media</h4>
 						<div className='flex gap-4'>
-							{project.tags.map((img: string, index: number) => (
-								<img key={index} src={img} alt='Icon Network' />
-							))}
+							{/* TODO: renderizar netwroks */}
+							{/* {project.media.map((media: string, index: number) => (
+								<img
+									className='w-10 h-10 rounded-full'
+									src={media}
+									alt='Media Project'
+									key={index}
+								/>
+							))} */}
 						</div>
 					</div>
 					<div>

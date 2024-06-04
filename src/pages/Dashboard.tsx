@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useAccount } from 'wagmi'
 
@@ -7,15 +7,15 @@ import CreateProject from '@/components/dashboard/CreateProject'
 import Layout from '@/components/dashboard/Layout'
 import Admin from '@/components/dashboard/layout/Admin'
 import Faucet from '@/components/dashboard/layout/Faucet'
+import Home from '@/components/dashboard/layout/Home'
 import Project from '@/components/dashboard/layout/Project'
 import Nav from '@/components/dashboard/Nav'
+import { Project as ProjectModel } from '@/models/project.model'
 import { Round } from '@/models/round.model'
 import { AppDispatch, useAppSelector } from '@/store'
 import { getERC20Details } from '@/store/thunks/erc20details.thunk'
 import { getLastRound, getRounds } from '@/store/thunks/round.thunk'
 import { myContext } from '@/utils/context/context'
-
-import Home from '../components/dashboard/layout/Home'
 
 export default function Dashboard(): JSX.Element {
 	const { activeLayout, setActiveLayout } = useContext(myContext)
@@ -34,6 +34,8 @@ export default function Dashboard(): JSX.Element {
 		state => state.round.roundsFetched
 	)
 
+	const projects: ProjectModel[] = lastRound.projects || []
+
 	useEffect(() => {
 		if (address) {
 			dispatch(getERC20Details(address as string))
@@ -48,9 +50,7 @@ export default function Dashboard(): JSX.Element {
 		if (!roundsFetched) {
 			dispatch(getRounds())
 		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [address, lastRoundFetched, roundsFetched])
+	}, [address, lastRoundFetched, roundsFetched, dispatch, setActiveLayout])
 
 	return (
 		<main className='flex gap-5 w-full h-screen p-3'>
@@ -58,17 +58,19 @@ export default function Dashboard(): JSX.Element {
 			<section className='flex flex-col w-full gap-5'>
 				<Nav />
 				<Layout>
-					{activeLayout === 'home' ? (
-						<Home />
-					) : activeLayout === 'faucet' ? (
-						<Faucet />
-					) : activeLayout === 'dashboard' ? (
-						<Admin />
-					) : activeLayout === 'create a new project' ? (
+					{activeLayout === 'home' && <Home />}
+					{activeLayout === 'faucet' && <Faucet />}
+					{activeLayout === 'dashboard' && <Admin />}
+					{activeLayout === 'create a new project' && (
 						<CreateProject round={lastRound} />
-					) : (
-						<Home />
 					)}
+					{activeLayout !== 'home' &&
+						activeLayout !== 'faucet' &&
+						activeLayout !== 'dashboard' &&
+						activeLayout !== 'create a new project' &&
+						projects.map((project: ProjectModel, index: number) => (
+							<Project key={index} project={project} />
+						))}
 				</Layout>
 			</section>
 		</main>

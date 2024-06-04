@@ -50,13 +50,6 @@ export default function Timer(): JSX.Element {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lastRoundFetched, lastRound])
 
-	const activeProject1 =
-		activeLayout === 'project1' ? 'bg-extracolor p-3' : 'item-view'
-	const activeProject2 =
-		activeLayout === 'project2' ? 'bg-extracolor p-3' : 'item-view'
-	const activeCreateProject =
-		activeLayout === 'create-project' ? 'bg-extracolor p-3' : 'item-view'
-
 	return (
 		<section className='flex flex-col items-start gap-3 w-full px-8'>
 			{Date.now() > registrationStartTime.getTime() &&
