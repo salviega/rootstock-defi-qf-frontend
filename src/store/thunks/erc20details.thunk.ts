@@ -1,14 +1,12 @@
 import { ethers } from 'ethers'
 import { toast } from 'react-toastify'
 
+import { ALLO_CONTRACT_ADDRESS } from '@/constants'
 import { getFrontendSigner } from '@/helpers'
 import { getContracts } from '@/helpers/contracts'
 import { ERC20Details } from '@/models/ERC20Details.model'
 import { toDecimal, toNumber } from '@/utils'
-import {
-	ALLO_CONTRACT_ADDRESS,
-	ERROR_MESSAGE
-} from '@/utils/variables/constants'
+import { ERROR_MESSAGE } from '@/utils/variables/constants'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import {

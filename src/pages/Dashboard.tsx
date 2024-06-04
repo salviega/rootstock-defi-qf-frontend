@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useAccount } from 'wagmi'
 
@@ -8,11 +8,12 @@ import Admin from '@/components/dashboard/layout/Admin'
 import Faucet from '@/components/dashboard/layout/Faucet'
 import Project from '@/components/dashboard/layout/Project'
 import Nav from '@/components/dashboard/Nav'
+import { Round } from '@/models/round.model'
 import { AppDispatch, useAppSelector } from '@/store'
+import { setRound } from '@/store/slides/roundslice'
 import { getERC20Details } from '@/store/thunks/erc20details.thunk'
-import { getLastRound } from '@/store/thunks/round.thunk'
+import { getLastRound, getRounds } from '@/store/thunks/round.thunk'
 import { myContext } from '@/utils/context/context'
-import Projects from '@/utils/projects/Projects.ts'
 
 import Home from '../components/dashboard/layout/Home'
 
@@ -23,7 +24,13 @@ export default function Dashboard(): JSX.Element {
 
 	const dispatch = useDispatch<AppDispatch>()
 
-	const lastRoundFetched = useAppSelector(state => state.round.lastRoundFetched)
+	const lastRoundFetched: boolean = useAppSelector(
+		state => state.round.lastRoundFetched
+	)
+
+	const roundsFetched: boolean = useAppSelector(
+		state => state.round.roundsFetched
+	)
 
 	useEffect(() => {
 		if (address) {
@@ -36,8 +43,12 @@ export default function Dashboard(): JSX.Element {
 			dispatch(getLastRound())
 		}
 
+		if (!roundsFetched) {
+			dispatch(getRounds())
+		}
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [address])
+	}, [address, lastRoundFetched, roundsFetched])
 
 	return (
 		<main className='flex gap-5 w-full h-screen p-3'>
@@ -51,10 +62,6 @@ export default function Dashboard(): JSX.Element {
 						<Faucet />
 					) : activeLayout === 'dashboard' ? (
 						<Admin />
-					) : activeLayout === 'project1' ? (
-						<Project item={Projects[0]} />
-					) : activeLayout === 'project2' ? (
-						<Project item={Projects[1]} />
 					) : (
 						<Home />
 					)}

@@ -26,6 +26,12 @@ import {
 import { createRoundFormSchema } from '@/utils/variables/constants/zod-schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+const abi = [
+	'function createPoolWithCustomStrategy(bytes32 _profileId, address _strategy, bytes _initStrategyData, address _token, uint256 _amount, (uint256 protocol, string pointer) _metadata, address[] _managers)'
+]
+
+const iface = new ethers.Interface(abi)
+
 type Props = {
 	dispatch: AppThunkDispatch
 	isLoading: boolean
@@ -130,29 +136,44 @@ export default function NewRoundForm(props: Props): JSX.Element {
 
 			const poolManagersAddresses: AddressLike[] = []
 
-			console.log('profileId', profileId)
-			console.log('roundAddress', roundAddress)
-			console.log('initRoundData', initRoundData)
-			console.log('daiMockContractAddress', daiMockContractAddress)
-			console.log('poolFundingAmount', poolFundingAmount)
-			console.log('metadata', metadata)
-			console.log('poolManagersAddresses', poolManagersAddresses)
+			// const data = iface.encodeFunctionData('createPoolWithCustomStrategy', [
+			// 	profileId,
+			// 	roundAddress,
+			// 	initRoundData,
+			// 	daiMockContractAddress,
+			// 	poolFundingAmount,
+			// 	metadata,
+			// 	poolManagersAddresses
+			// ])
 
-			const createPoolWithCustomStrategyTx = await allo
-				.connect(web3Signer)
-				.createPoolWithCustomStrategy(
-					profileId,
-					roundAddress,
-					initRoundData,
-					daiMockContractAddress,
-					poolFundingAmount,
-					metadata,
-					poolManagersAddresses,
-					{
-						gasLimit: GAS_LIMIT
-					}
-				)
-			await createPoolWithCustomStrategyTx.wait()
+			// const transactionParameters = {
+			// 	to: '0xe7da47ac67f04044f7783d528f11cdb309b5d2e2', // Dirección de destino
+			// 	from: '0x7753e5f36f20b14ffb6b6a61319eb66f63abdb0b', // Dirección de origen
+			// 	gasLimit: 3000000,
+			// 	data: '0xe1007d4ad9cf080ed9...'
+			// }
+
+			// console.log('Sending transaction...')
+			// const txResponse = await web3Signer.sendTransaction(transactionParameters)
+			// console.log('Transaction sent:', txResponse)
+			// const receipt = await txResponse.wait()
+			// console.log('Transaction mined:', receipt)
+
+			// const createPoolWithCustomStrategyTx = await allo
+			// 	.connect(web3Signer)
+			// 	.createPoolWithCustomStrategy(
+			// 		profileId,
+			// 		roundAddress,
+			// 		initRoundData,
+			// 		daiMockContractAddress,
+			// 		poolFundingAmount,
+			// 		metadata,
+			// 		poolManagersAddresses,
+			// 		{
+			// 			gasLimit: GAS_LIMIT
+			// 		}
+			// 	)
+			// await createPoolWithCustomStrategyTx.wait()
 
 			const currentQvSimpleStrategyContract =
 				qVSimpleStrategy(ROUND_ADDRESS).connect(web3Signer)

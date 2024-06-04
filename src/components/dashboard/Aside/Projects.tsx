@@ -1,17 +1,55 @@
-/* Hooks */
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
-/* Components */
+import { Project } from '@/models/project.model'
+import { Round } from '@/models/round.model'
+import { useAppSelector } from '@/store'
+import { convertTimestampToDate } from '@/utils'
 import { myContext } from '@/utils/context/context'
 
 import AddProject from '../../../assets/svg/asideComponent/addIcon.svg'
-/* Assets */
 import IconProject1 from '../../../assets/svg/asideComponent/LogoProject1.svg'
 import IconProject2 from '../../../assets/svg/asideComponent/LogoProject2.svg'
 
 export default function Projects(): JSX.Element {
 	const { activeLayout, setActiveLayout } = useContext(myContext)
+
+	const [allocationEndTime, setAllocationEndTime] = useState<Date>(new Date())
+	const [registrationEndTime, setRegistrationEndTime] = useState<Date>(
+		new Date()
+	)
+	const [registrationStartTime, setRegistrationStartTime] = useState<Date>(
+		new Date()
+	)
+
+	const lastRound: Round = useAppSelector(state => state.round.lastRound)
+
+	const lastRoundFetched: boolean = useAppSelector(
+		state => state.round.lastRoundFetched
+	)
+	const rounds: Round[] = useAppSelector(state => state.round.rounds)
+
+	const roundsFetched: boolean = useAppSelector(
+		state => state.round.roundsFetched
+	)
+
+	const projects: Project[] = lastRound.projects
+
+	const getStates = async () => {
+		setAllocationEndTime(
+			new Date(convertTimestampToDate(lastRound.allocationEndTime))
+		)
+		setRegistrationEndTime(
+			new Date(convertTimestampToDate(lastRound.registrationEndTime))
+		)
+		setRegistrationStartTime(
+			new Date(convertTimestampToDate(lastRound.registrationStartTime))
+		)
+	}
+
+	useEffect(() => {
+		getStates()
+	}, [lastRound])
 
 	const activeProject1 =
 		activeLayout === 'project1' ? 'bg-extracolor p-3' : 'item-view'
@@ -25,29 +63,20 @@ export default function Projects(): JSX.Element {
 			<div className='text-start w-full pb-1 border-b-2 border-thircolor'>
 				<h4 className='text-thircolor'>Projects</h4>
 			</div>
-			<nav className='flex flex-col gap-5 w-full'>
-				<NavLink
-					to='/dashboard'
-					onClick={() => {
-						setActiveLayout('project1')
-					}}
-					className={`${activeProject1} flex items-center w-full gap-3 rounded-lg`}
-				>
-					<img src={IconProject1} alt='Item 1' />
-					<span className='text-pricolor text-fontM'>QUANTUMNET</span>
-				</NavLink>
-
-				<NavLink
-					to='/dashboard'
-					onClick={() => {
-						setActiveLayout('project2')
-					}}
-					className={`${activeProject2} flex items-center w-full gap-3 rounded-lg`}
-				>
-					<img src={IconProject2} alt='Item 2' />
-					<span className='text-pricolor text-fontM'>ECONET DYNAMICS</span>
-				</NavLink>
-
+			<nav className='flex flex-col gap-3 w-full'>
+				{projects.map((project: Project, index: number) => (
+					<NavLink
+						to='/dashboard'
+						className={`${activeCreateProject} flex items-center w-full gap-3 rounded-lg`}
+						key={index}
+						onClick={() => {
+							setActiveLayout(project.name)
+						}}
+					>
+						<img src={project.logo} alt='Item 1' />
+						<span className='text-pricolor text-fontM'>{project.name}</span>
+					</NavLink>
+				))}
 				<NavLink
 					to='/dashboard'
 					onClick={() => {
