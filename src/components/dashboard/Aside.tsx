@@ -1,6 +1,7 @@
 import Connection from './Aside/Connection'
 import Logo from './Aside/Logo'
 import Projects from './Aside/Projects'
+import Timer from './Aside/Timer'
 import Views from './Aside/Views'
 
 export default function Aside(): JSX.Element {

@@ -1,9 +1,10 @@
+import { ROUND_ADDRESS } from '@/constants'
 import { getContracts } from '@/helpers/contracts'
 import { roundsApiFirebase } from '@/middlewares/firebase/round.firebase.middleware'
 import { Project } from '@/models/project.model'
 import { Round } from '@/models/round.model'
 import { toNumber } from '@/utils'
-import { ERROR_MESSAGE, ROUND_ADDRESS } from '@/utils/variables/constants'
+import { ERROR_MESSAGE } from '@/utils/variables/constants'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import {

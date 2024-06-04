@@ -8,38 +8,33 @@ import { convertTimestampToDate } from '@/utils'
 import { myContext } from '@/utils/context/context'
 
 import AddProject from '../../../assets/svg/asideComponent/addIcon.svg'
-import IconProject1 from '../../../assets/svg/asideComponent/LogoProject1.svg'
-import IconProject2 from '../../../assets/svg/asideComponent/LogoProject2.svg'
+import Countdown from '../layout/Countdown'
 
-import Timer from './Timer'
-
-export default function Projects(): JSX.Element {
+export default function Timer(): JSX.Element {
 	const { activeLayout, setActiveLayout } = useContext(myContext)
 
 	const [allocationEndTime, setAllocationEndTime] = useState<Date>(new Date())
-	const [registrationEndTime, setRegistrationEndTime] = useState<Date>(
+	const [allocationStartTime, setAllocationStartTime] = useState<Date>(
 		new Date()
 	)
 	const [registrationStartTime, setRegistrationStartTime] = useState<Date>(
 		new Date()
 	)
+	const [registrationEndTime, setRegistrationEndTime] = useState<Date>(
+		new Date()
+	)
 
 	const lastRound: Round = useAppSelector(state => state.round.lastRound)
-
 	const lastRoundFetched: boolean = useAppSelector(
 		state => state.round.lastRoundFetched
 	)
-	const rounds: Round[] = useAppSelector(state => state.round.rounds)
-
-	const roundsFetched: boolean = useAppSelector(
-		state => state.round.roundsFetched
-	)
-
-	const projects: Project[] = lastRound.projects
 
 	const getStates = async () => {
 		setAllocationEndTime(
 			new Date(convertTimestampToDate(lastRound.allocationEndTime))
+		)
+		setAllocationStartTime(
+			new Date(convertTimestampToDate(lastRound.allocationStartTime))
 		)
 		setRegistrationEndTime(
 			new Date(convertTimestampToDate(lastRound.registrationEndTime))
@@ -51,7 +46,9 @@ export default function Projects(): JSX.Element {
 
 	useEffect(() => {
 		getStates()
-	}, [lastRound])
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [lastRoundFetched, lastRound])
 
 	const activeProject1 =
 		activeLayout === 'project1' ? 'bg-extracolor p-3' : 'item-view'
@@ -62,36 +59,31 @@ export default function Projects(): JSX.Element {
 
 	return (
 		<section className='flex flex-col items-start gap-3 w-full px-8'>
-			<div className='text-start w-full pb-1 border-b-2 border-thircolor'>
-				<h4 className='text-thircolor'>Projects</h4>
-			</div>
-			<Timer />
-
-			<nav className='flex flex-col gap-3 w-full'>
-				{projects.map((project: Project, index: number) => (
-					<NavLink
-						to='/dashboard'
-						className={`${activeCreateProject} flex items-center w-full gap-3 rounded-lg`}
-						key={index}
-						onClick={() => {
-							setActiveLayout(project.name)
-						}}
-					>
-						<img src={project.logo} alt='Item 1' />
-						<span className='text-pricolor text-fontM'>{project.name}</span>
-					</NavLink>
-				))}
-				<NavLink
-					to='/dashboard'
-					onClick={() => {
-						setActiveLayout('create-project')
-					}}
-					className={`${activeCreateProject} flex items-center w-full gap-3 rounded-lg`}
-				>
-					<img src={AddProject} alt='Item 3' />
-					<span className='text-pricolor text-fontM'>CREATE A NEW PROJECT</span>
-				</NavLink>
-			</nav>
+			{Date.now() > registrationStartTime.getTime() &&
+			Date.now() < registrationEndTime.getTime() ? (
+				<div className='flex items-center justify-between px-2 gap-4'>
+					<h5 className='flex flex-col text-left'>
+						<span>Registry</span> <span>time</span>
+					</h5>
+					<Countdown targetDate={registrationEndTime} />
+				</div>
+			) : Date.now() > registrationEndTime.getTime() &&
+			  Date.now() < allocationStartTime.getTime() ? (
+				<div className='flex items-center justify-between px-2 gap-4'>
+					<h5 className='flex flex-col text-left'>
+						<span>Voting</span> <span>starts</span>
+					</h5>
+					<Countdown targetDate={allocationStartTime} />
+				</div>
+			) : Date.now() > allocationStartTime.getTime() &&
+			  Date.now() < allocationEndTime.getTime() ? (
+				<div className='flex items-center justify-between px-2 gap-4'>
+					<h5 className='flex flex-col text-left'>
+						<span>Voting</span> <span>time</span>
+					</h5>
+					<Countdown targetDate={allocationEndTime} />
+				</div>
+			) : null}
 		</section>
 	)
 }

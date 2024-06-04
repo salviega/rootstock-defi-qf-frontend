@@ -1,5 +1,4 @@
 // Addresses
-export const ROUND_ADDRESS = '0xf172296544A9D3B0ced4141421BEEC3f8dEabD85'
 export const SCI_ADMIN_ADDRESS = '0x7753E5f36f20B14fFb6b6a61319Eb66f63abdb0b'
 
 // Allo

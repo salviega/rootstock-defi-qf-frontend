@@ -1,11 +1,15 @@
 import { useContext, useState } from 'react'
 import { AddressLike, BytesLike, ethers, MaxUint256 } from 'ethers'
 import { useForm } from 'react-hook-form'
-import { Form } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useAccount } from 'wagmi'
 import { z } from 'zod'
 
-import { ALLO_PROFILE_ID, ROUND_ADDRESS } from '@/constants'
+import {
+	ALLO_CONTRACT_ADDRESS,
+	ALLO_PROFILE_ID,
+	ROUND_ADDRESS
+} from '@/constants'
 import { getFrontendSigner } from '@/helpers'
 import { getContracts } from '@/helpers/contracts'
 import { storeFile, storeObject } from '@/helpers/pinata'
@@ -20,7 +24,6 @@ import { toAbiCoder, toDecimal, toTimestamp } from '@/utils'
 import { myContext } from '@/utils/context/context'
 import {
 	ERROR_MESSAGE,
-	GAS_LIMIT,
 	INITIALIZE_DATA_STRUCT_TYPES
 } from '@/utils/variables/constants'
 import { createRoundFormSchema } from '@/utils/variables/constants/zod-schemas'
@@ -38,7 +41,7 @@ type Props = {
 }
 
 export default function NewRoundForm(props: Props): JSX.Element {
-	const { activePopUp, setActivePopUp } = useContext(myContext)
+	const { address } = useAccount()
 
 	const { dispatch, isLoading } = props
 
@@ -46,6 +49,8 @@ export default function NewRoundForm(props: Props): JSX.Element {
 
 	const { allo, doCMock, qVSimpleStrategy } = getContracts()
 	const { addRound, getRoundsLength } = roundsApiFirebase()
+
+	const { activePopUp, setActivePopUp } = useContext(myContext)
 
 	const form = useForm<z.infer<typeof createRoundFormSchema>>({
 		defaultValues: {
@@ -136,28 +141,30 @@ export default function NewRoundForm(props: Props): JSX.Element {
 
 			const poolManagersAddresses: AddressLike[] = []
 
-			// const data = iface.encodeFunctionData('createPoolWithCustomStrategy', [
-			// 	profileId,
-			// 	roundAddress,
-			// 	initRoundData,
-			// 	daiMockContractAddress,
-			// 	poolFundingAmount,
-			// 	metadata,
-			// 	poolManagersAddresses
-			// ])
+			const data = iface.encodeFunctionData('createPoolWithCustomStrategy', [
+				profileId,
+				roundAddress,
+				initRoundData,
+				daiMockContractAddress,
+				poolFundingAmount,
+				[metadata.protocol, metadata.pointer],
+				poolManagersAddresses
+			])
 
-			// const transactionParameters = {
-			// 	to: '0xe7da47ac67f04044f7783d528f11cdb309b5d2e2', // Dirección de destino
-			// 	from: '0x7753e5f36f20b14ffb6b6a61319eb66f63abdb0b', // Dirección de origen
-			// 	gasLimit: 3000000,
-			// 	data: '0xe1007d4ad9cf080ed9...'
-			// }
+			const transactionParameters = {
+				to: ALLO_CONTRACT_ADDRESS,
+				from: address,
+				gasLimit: 3000000,
+				data
+			}
 
-			// console.log('Sending transaction...')
-			// const txResponse = await web3Signer.sendTransaction(transactionParameters)
-			// console.log('Transaction sent:', txResponse)
-			// const receipt = await txResponse.wait()
-			// console.log('Transaction mined:', receipt)
+			console.log('Sending transaction...')
+			const createPoolWithCustomStrategyTx = await web3Signer.sendTransaction(
+				transactionParameters
+			)
+
+			console.log('Transaction sent...')
+			await createPoolWithCustomStrategyTx.wait()
 
 			// const createPoolWithCustomStrategyTx = await allo
 			// 	.connect(web3Signer)
