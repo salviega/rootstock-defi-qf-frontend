@@ -58,19 +58,21 @@ export default function Dashboard(): JSX.Element {
 			<section className='flex flex-col w-full gap-5'>
 				<Nav />
 				<Layout>
-					{activeLayout === 'home' && <Home />}
-					{activeLayout === 'faucet' && <Faucet />}
-					{activeLayout === 'dashboard' && <Admin />}
-					{activeLayout === 'create a new project' && (
-						<CreateProject round={lastRound} />
-					)}
-					{activeLayout !== 'home' &&
-						activeLayout !== 'faucet' &&
-						activeLayout !== 'dashboard' &&
-						activeLayout !== 'create a new project' &&
-						projects.map((project: ProjectModel, index: number) => (
-							<Project key={index} project={project} />
-						))}
+					<>
+						{activeLayout === 'home' && <Home />}
+						{activeLayout === 'faucet' && <Faucet />}
+						{activeLayout === 'dashboard' && <Admin />}
+						{activeLayout === 'create a new project' && (
+							<CreateProject round={lastRound} />
+						)}
+						{activeLayout !== 'home' &&
+							activeLayout !== 'faucet' &&
+							activeLayout !== 'dashboard' &&
+							activeLayout !== 'create a new project' &&
+							projects.map((project: ProjectModel, index: number) => (
+								<Project key={index} project={project} />
+							))}
+					</>
 				</Layout>
 			</section>
 		</main>
