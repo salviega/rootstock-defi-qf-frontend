@@ -70,11 +70,13 @@ export default function Dashboard(): JSX.Element {
 							activeLayout !== 'dashboard' &&
 							activeLayout !== 'create a new project' &&
 							projects?.length > 0 &&
-							projects?.map((project: ProjectModel, index: number) => {
-								if (activeLayout === project.name) {
-									return <Project key={index} project={project} />
-								}
-							})}
+							projects
+								.filter(
+									(project: ProjectModel) => activeLayout === project.name
+								)
+								.map((project: ProjectModel, index: number) => (
+									<Project key={index} project={project} />
+								))}
 					</>
 				</Layout>
 			</section>

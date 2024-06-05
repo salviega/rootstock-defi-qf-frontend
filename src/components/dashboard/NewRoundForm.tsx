@@ -17,13 +17,16 @@ import { roundsApiFirebase } from '@/middlewares/firebase/round.firebase.middlew
 import { AppThunkDispatch } from '@/models/dispatch.model'
 import { InitializeData } from '@/models/initialize-data.model'
 import { Metadata } from '@/models/metadata.model'
+import { Project } from '@/models/project.model'
 import { Round, RoundMetadata } from '@/models/round.model'
+import { useAppSelector } from '@/store'
 import { setRound, setRoundFetched } from '@/store/slides/roundslice'
 import { setIsLoading } from '@/store/slides/uiSlice'
 import { toAbiCoder, toDecimal, toTimestamp } from '@/utils'
 import { myContext } from '@/utils/context/context'
 import {
 	ERROR_MESSAGE,
+	GAS_LIMIT,
 	INITIALIZE_DATA_STRUCT_TYPES
 } from '@/utils/variables/constants'
 import { createRoundFormSchema } from '@/utils/variables/constants/zod-schemas'
@@ -45,6 +48,8 @@ export default function NewRoundForm(props: Props): JSX.Element {
 
 	const { address } = useAccount()
 
+	const { updateRound } = roundsApiFirebase()
+
 	const { dispatch, isLoading } = props
 
 	const [banner, setBanner] = useState<File | null>(null)
@@ -53,6 +58,12 @@ export default function NewRoundForm(props: Props): JSX.Element {
 	const { addRound, getRoundsLength } = roundsApiFirebase()
 
 	const { activePopUp, setActivePopUp } = useContext(myContext)
+
+	const round: Round = useAppSelector(state => state.round.lastRound)
+
+	const lastRoundFetched: boolean = useAppSelector(
+		state => state.round.lastRoundFetched
+	)
 
 	const form = useForm<z.infer<typeof createRoundFormSchema>>({
 		defaultValues: {
@@ -231,6 +242,40 @@ export default function NewRoundForm(props: Props): JSX.Element {
 		}
 	}
 
+	const onDistribute = async () => {
+		try {
+			if (!round) return
+			if (!address) return
+
+			dispatch(setIsLoading(true))
+			const web3Signer: ethers.JsonRpcSigner = await getFrontendSigner()
+
+			const recipientIds: string[] = round.projects.map(
+				(project: Project) => project.recipientId
+			)
+
+			const distributeTx = await allo
+				.connect(web3Signer)
+				.distribute(
+					round?.poolId,
+					recipientIds,
+					ethers.encodeBytes32String(''),
+					{ gasLimit: GAS_LIMIT }
+				)
+			await distributeTx.wait()
+
+			const updatedRound = { ...round, distributed: true }
+			await updateRound(updatedRound)
+			dispatch(setRound(updatedRound))
+			dispatch(setIsLoading(false))
+			toast.success('Distributed funds')
+		} catch (error) {
+			console.error(error)
+			dispatch(setIsLoading(false))
+			toast.error(ERROR_MESSAGE)
+		}
+	}
+
 	return (
 		<section className={`${activePopUp ? 'hidden' : 'flex flex-col gap-5'}`}>
 			<div className='flex flex-row-reverse w-full justify-between pb-3 border-b-4 border-secdcolor border-dashed'>
@@ -242,12 +287,15 @@ export default function NewRoundForm(props: Props): JSX.Element {
 			>
 				<section className='w-full flex items-center justify-between'>
 					<h3 className='text-center pr-8'>New Round</h3>
-					<button
-						type='button'
-						className={`w-fit h-fit px-5 py-3 bg-pricolor border-2 border-thircolor rounded-lg`}
-					>
-						<p className='text-thirdcolor'>Distribute</p>
-					</button>
+					{!round.distributed && (
+						<button
+							className={`w-fit h-fit px-5 py-3 bg-pricolor border-2 border-thircolor rounded-lg`}
+							type='button'
+							onClick={onDistribute}
+						>
+							<p className='text-thirdcolor'>Distribute</p>
+						</button>
+					)}
 				</section>
 				<section className='flex justify-center flex-wrap gap-x-6 gap-y-4'>
 					<div className='flex flex-col w-[250px]'>

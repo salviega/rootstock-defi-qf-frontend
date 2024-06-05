@@ -10,7 +10,7 @@ export const QUADRIKCHAIN_ADMIN_ADDRESS: string =
 	'0x7753E5f36f20B14fFb6b6a61319Eb66f63abdb0b'
 
 export const ROUND_ADDRESS: string =
-	'0x6268b6E2D1Ab18B8B379928cd109516C288A1226'
+	'0x9FfeA56f609c4581ed4cd58E85E9c8C9905D1b1B'
 
 export const setNetworkMessage = () => {
 	const network =

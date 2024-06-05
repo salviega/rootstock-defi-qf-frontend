@@ -83,7 +83,7 @@ export default function Project(props: Props): JSX.Element {
 						{activeProgressVote === 1 ? (
 							<CardProjectVote />
 						) : activeProgressVote === 2 ? (
-							<CardProjectDonation />
+							<CardProjectDonation round={round} project={project} />
 						) : null}
 					</section>
 				</section>
@@ -119,20 +119,19 @@ export default function Project(props: Props): JSX.Element {
 								Waiting distribution
 							</button>
 						)}
-						{project.recipientId !== address && (
-							//  &&
-							// 	Date.now() > allocationStartTime.getTime() &&
-							// 	Date.now() < allocationEndTime.getTime() &&
-							<button
-								onClick={() => {
-									setActivePopUpVote(true)
-									setActiveProgressVote(1)
-								}}
-								className={`w-fit h-fit px-5 py-3 bg-thircolor rounded-lg`}
-							>
-								<p className='text-pricolor text-fontL'>Vote For Us</p>
-							</button>
-						)}
+						{project.recipientId !== address &&
+							Date.now() > allocationStartTime.getTime() &&
+							Date.now() < allocationEndTime.getTime() && (
+								<button
+									onClick={() => {
+										setActivePopUpVote(true)
+										setActiveProgressVote(1)
+									}}
+									className={`w-fit h-fit px-5 py-3 bg-thircolor rounded-lg`}
+								>
+									<p className='text-pricolor text-fontL'>Vote For Us</p>
+								</button>
+							)}
 						<div></div>
 					</div>
 					<article className='my-5'>

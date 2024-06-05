@@ -29,4 +29,4 @@ export const IPFS_GATEWAY =
 // Others
 export const FIREBASE_COLLECTION_PROFILES = 'profiles'
 export const FIREBASE_COLLECTION_ROUNDS = 'rounds'
-export const GAS_LIMIT = 30000000
+export const GAS_LIMIT = 3000000
