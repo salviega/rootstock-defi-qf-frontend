@@ -4,8 +4,19 @@ export const ALLO_CONTRACT_ADDRESS: string =
 export const ALLO_PROFILE_ID: string =
 	'0xd9cf080ed95e558cfb8bd37a61758a18f7c3bf79221811f810879ac73862e3d8'
 
+export const CHAIN_ID: number = 31
+
 export const QUADRIKCHAIN_ADMIN_ADDRESS: string =
 	'0x7753E5f36f20B14fFb6b6a61319Eb66f63abdb0b'
 
 export const ROUND_ADDRESS: string =
-	'0xd0d97121Ae419AB9fb1A85f9fe29500d5c215c54'
+	'0x6268b6E2D1Ab18B8B379928cd109516C288A1226'
+
+export const setNetworkMessage = () => {
+	const network =
+		import.meta.env.VITE_ENABLE_TESTNETS === 'true' ? 'RSK' : 'RSK testnet'
+
+	return `Please switch to ${network} network`
+}
+
+export const NETWORK_CHANGE_MESSAGE: string = setNetworkMessage()

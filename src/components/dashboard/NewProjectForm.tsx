@@ -18,11 +18,7 @@ type FormData = {
 	slogan: string
 	description: string
 	tags: string
-	media: [
-			github: string,
-			website: string,
-			twitter: string
-		]
+	media: [github: string, website: string, twitter: string]
 }
 
 export default function NewProjectForm(props: Props): JSX.Element {
@@ -41,7 +37,6 @@ export default function NewProjectForm(props: Props): JSX.Element {
 	const logoRef = useRef<HTMLInputElement | null>(null)
 
 	const onCreateProject = async (values: FormData) => {
-		console.log('values', values)
 		if (!address) return
 
 		const banner = bannerRef.current?.files?.[0] || null

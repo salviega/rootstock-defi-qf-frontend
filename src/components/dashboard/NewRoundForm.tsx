@@ -41,6 +41,8 @@ type Props = {
 }
 
 export default function NewRoundForm(props: Props): JSX.Element {
+	const { setActiveLayout } = useContext(myContext)
+
 	const { address } = useAccount()
 
 	const { dispatch, isLoading } = props
@@ -218,6 +220,7 @@ export default function NewRoundForm(props: Props): JSX.Element {
 			dispatch(setRound(round))
 			dispatch(setRoundFetched(true))
 			dispatch(setIsLoading(false))
+			setActiveLayout('home')
 			toast.success('Round created successfully!')
 			form.reset()
 		} catch (error) {
@@ -241,7 +244,8 @@ export default function NewRoundForm(props: Props): JSX.Element {
 					<h3 className='text-center pr-8'>New Round</h3>
 					<button
 						type='button'
-						className={`w-fit h-fit px-5 py-3 bg-pricolor border-2 border-thircolor rounded-lg`}>
+						className={`w-fit h-fit px-5 py-3 bg-pricolor border-2 border-thircolor rounded-lg`}
+					>
 						<p className='text-thirdcolor'>Distribute</p>
 					</button>
 				</section>

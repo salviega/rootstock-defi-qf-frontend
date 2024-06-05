@@ -74,7 +74,11 @@ export default function Projects(): JSX.Element {
 							setActiveLayout(project.name)
 						}}
 					>
-						<img className='w-[100px] h-[70px] rounded-xl' src={project.logo} alt='Item 1' />
+						<img
+							className='w-[100px] h-[70px] rounded-xl'
+							src={project.logo}
+							alt='Item 1'
+						/>
 						<span className='text-pricolor text-fontM uppercase'>
 							{project.name}
 						</span>
