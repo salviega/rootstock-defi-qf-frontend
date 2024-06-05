@@ -7,6 +7,10 @@ interface ContextProps {
 	setIsClicked: (newIsClicked: number) => void
 	activePopUp: boolean
 	setActivePopUp: (newActivePopUp: boolean) => void
+	activePopUpVote: boolean
+	setActivePopUpVote: (newActivePopUpVote: boolean) => void
+	activeProgressVote: number
+	setActiveProgressVote: (newActiveProgressVote: number) => void
 }
 
 const myContext = createContext<ContextProps>({
@@ -15,7 +19,11 @@ const myContext = createContext<ContextProps>({
 	isClicked: 0,
 	setIsClicked: () => {},
 	activePopUp: false,
-	setActivePopUp: () => {}
+	setActivePopUp: () => {},
+	activePopUpVote: false,
+	setActivePopUpVote: () => {},
+	activeProgressVote: 0,
+	setActiveProgressVote: () => {}
 })
 
 export { myContext }

@@ -239,13 +239,11 @@ export default function NewRoundForm(props: Props): JSX.Element {
 			>
 				<section className='w-full flex items-center justify-between'>
 					<h3 className='text-center pr-8'>New Round</h3>
-					{/* <button
+					<button
 						type='button'
-						onClick={() => setActivePopUp(true)}
-						className={`w-fit h-fit px-5 py-3 bg-thircolor rounded-lg`}
-					>
-						<p className='text-pricolor'>Create Round</p>
-					</button> */}
+						className={`w-fit h-fit px-5 py-3 bg-pricolor border-2 border-thircolor rounded-lg`}>
+						<p className='text-thirdcolor'>Distribute</p>
+					</button>
 				</section>
 				<section className='flex justify-center flex-wrap gap-x-6 gap-y-4'>
 					<div className='flex flex-col w-[250px]'>
@@ -404,7 +402,7 @@ export default function NewRoundForm(props: Props): JSX.Element {
 				</section>
 				<button
 					type='submit'
-					className={`w-fit h-fit px-5 py-3 bg-thircolor rounded-lg`}
+					className={`w-[250px] h-fit px-5 py-3 mx-auto bg-thircolor rounded-lg`}
 				>
 					<p className='text-pricolor'>Submit</p>
 				</button>

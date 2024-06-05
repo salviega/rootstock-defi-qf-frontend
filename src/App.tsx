@@ -12,13 +12,20 @@ function App() {
 	const [activeLayout, setActiveLayout] = useState('home')
 	const [isClicked, setIsClicked] = useState(0)
 	const [activePopUp, setActivePopUp] = useState(false)
+	const [activePopUpVote, setActivePopUpVote] = useState(false);
+	const [activeProgressVote, setActiveProgressVote] = useState(0)
+
 	const value = {
 		activeLayout,
 		setActiveLayout,
 		isClicked,
 		setIsClicked,
 		activePopUp,
-		setActivePopUp
+		setActivePopUp,
+		activePopUpVote,
+		setActivePopUpVote,
+		activeProgressVote,
+		setActiveProgressVote,
 	}
 
 	return (
