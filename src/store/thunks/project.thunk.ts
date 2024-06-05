@@ -56,7 +56,10 @@ export const createProject = createAsyncThunk(
 			const project: Project = {
 				...projectDto,
 				banner: bannerHash,
-				logo: logoHash
+				logo: logoHash,
+				website: '',
+				github: '',
+				twitter: ''
 			}
 
 			const ipfsUrl: string = await storeObject(project)
