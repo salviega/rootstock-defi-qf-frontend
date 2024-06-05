@@ -17,10 +17,12 @@ type FormData = {
 	name: string
 	slogan: string
 	description: string
-	twitter: string
-	github: string
-	website: string
 	tags: string
+	media: [
+			github: string,
+			website: string,
+			twitter: string
+		]
 }
 
 export default function NewProjectForm(props: Props): JSX.Element {
@@ -49,14 +51,12 @@ export default function NewProjectForm(props: Props): JSX.Element {
 			amountDistributed: 0,
 			banner: banner as File,
 			description: values.description,
-			github: values.github,
 			logo: logo as File,
 			name: values.name,
 			recipientId: address as string,
 			slogan: values.slogan,
 			tags: values.tags.split(',').map(tag => tag.trim()),
-			twitter: values.twitter,
-			website: values.website
+			media: values.media.map(net => net.trim())
 		}
 
 		dispatch(
@@ -175,10 +175,10 @@ export default function NewProjectForm(props: Props): JSX.Element {
 							id='twitter'
 							placeholder='myproject'
 							className='w-full px-5 py-2 text-fontM border-secdcolor border-b-2'
-							{...register('twitter', { required: 'Twitter is required' })}
+							{...register('media.2', { required: 'Twitter is required' })}
 						/>
-						{errors.twitter && (
-							<p className='text-red-500'>{errors.twitter.message}</p>
+						{errors.media?.[2] && (
+							<p className='text-red-500'>{errors.media?.[2]?.message}</p>
 						)}
 					</div>
 					<div className='flex flex-col w-[250px]'>
@@ -193,7 +193,7 @@ export default function NewProjectForm(props: Props): JSX.Element {
 							id='github'
 							placeholder='https://github.com/myproject'
 							className='w-full px-5 py-2 text-fontM border-secdcolor border-b-2'
-							{...register('github', {
+							{...register('media.0', {
 								required: 'Github URL is required',
 								pattern: {
 									value: /^https?:\/\/[^\s$.?#].[^\s]*$/,
@@ -201,8 +201,8 @@ export default function NewProjectForm(props: Props): JSX.Element {
 								}
 							})}
 						/>
-						{errors.github && (
-							<p className='text-red-500'>{errors.github?.message}</p>
+						{errors.media?.[0] && (
+							<p className='text-red-500'>{errors.media?.[0]?.message}</p>
 						)}
 					</div>
 					<div className='flex flex-col w-[250px]'>
@@ -217,7 +217,7 @@ export default function NewProjectForm(props: Props): JSX.Element {
 							id='website'
 							placeholder='https://myproject.com'
 							className='w-full px-5 py-2 text-fontM border-secdcolor border-b-2'
-							{...register('website', {
+							{...register('media.1', {
 								required: 'Website is required',
 								pattern: {
 									value: /^https?:\/\/[^\s$.?#].[^\s]*$/,
@@ -225,8 +225,8 @@ export default function NewProjectForm(props: Props): JSX.Element {
 								}
 							})}
 						/>
-						{errors.website && (
-							<p className='text-red-500'>{errors.website?.message}</p>
+						{errors.media?.[1] && (
+							<p className='text-red-500'>{errors.media?.[1]?.message}</p>
 						)}
 					</div>
 					<div className='flex flex-col w-[250px]'>

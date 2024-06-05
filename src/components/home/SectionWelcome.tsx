@@ -26,7 +26,7 @@ export default function SectionWelcome(): JSX.Element {
 					<Link to={`/dashboard`}>
 						<Button
 							bgColor='thircolor'
-							color='white'
+							color='pricolor'
 							text='Join Now'
 							sizeFont='L'
 						/>

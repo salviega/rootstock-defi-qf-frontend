@@ -4,6 +4,8 @@ import { Round } from '@/models/round.model'
 import { useAppSelector } from '@/store'
 import { convertTimestampToDate } from '@/utils'
 
+import Timer from './Aside/Timer'
+
 export default function Nav(): JSX.Element {
 	const [allocationEndTime, setAllocationEndTime] = useState<Date>(new Date())
 	const [allocationStartTime, setAllocationStartTime] = useState<Date>(
@@ -43,7 +45,10 @@ export default function Nav(): JSX.Element {
 	}, [lastRoundFetched, lastRound])
 
 	return (
-		<nav className='dashboard__container--nav flex items-center justify-evenly w-full h-[100px] px-10 rounded-lg'>
+		<nav className='dashboard__container--nav flex items-center justify-between w-full h-[100px] px-10 rounded-lg'>
+			<li>
+				<Timer />
+			</li>
 			<li>
 				<div className='w-fit pr-5 border-b-2 border-secdcolor'>
 					<span className='text-secdcolor text-fontL font-semibold'>

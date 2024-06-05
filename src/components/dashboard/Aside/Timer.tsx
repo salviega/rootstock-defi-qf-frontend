@@ -51,12 +51,12 @@ export default function Timer(): JSX.Element {
 	}, [lastRoundFetched, lastRound])
 
 	return (
-		<section className='flex flex-col items-start gap-3 w-full px-8'>
+		<section className='flex items-start gap-3 w-full'>
 			{Date.now() > registrationStartTime.getTime() &&
 			Date.now() < registrationEndTime.getTime() ? (
-				<div className='flex items-center justify-between px-2 gap-4'>
-					<h5 className='flex flex-col text-left'>
-						<span>Registry</span> <span>time</span>
+				<div className='flex items-center justify-between gap-4'>
+					<h5 className='flex text-left'>
+						<span className='item-actual-time'>Registry Time</span>
 					</h5>
 					<Countdown targetDate={registrationEndTime} />
 				</div>
@@ -64,15 +64,15 @@ export default function Timer(): JSX.Element {
 			  Date.now() < allocationStartTime.getTime() ? (
 				<div className='flex items-center justify-between px-2 gap-4'>
 					<h5 className='flex flex-col text-left'>
-						<span>Voting</span> <span>starts</span>
+						<span className='item-actual-time'>Voting Starts</span>
 					</h5>
 					<Countdown targetDate={allocationStartTime} />
 				</div>
 			) : Date.now() > allocationStartTime.getTime() &&
 			  Date.now() < allocationEndTime.getTime() ? (
-				<div className='flex items-center justify-between px-2 gap-4'>
-					<h5 className='flex flex-col text-left'>
-						<span>Voting</span> <span>time</span>
+				<div className='flex flex-col items-center justify-between'>
+					<h5 className='flex flex-col text-left border-b-2 border-secdcolor pr-5'>
+						<span className='item-actual-time'>Voting Time</span>
 					</h5>
 					<Countdown targetDate={allocationEndTime} />
 				</div>

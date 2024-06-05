@@ -12,39 +12,42 @@
   --secdcolor: #21212D;
   --thircolor: #037171;
 
+  --textitle: 'Epilogue', sans-serif;
+  --textdesc: 'Segoe UI', sans-serif;
+
   --extracolor: rgba(0, 0, 0, 0.25);
 }
 
 h1{
-  font-family: 'Epilogue', sans-serif;
+  font-family: var(--textitle);
   font-size: 64px;
   font-weight: 600;
   line-height: 72px;
 }
 
 h2{
-  font-family: 'Epilogue', sans-serif;
+  font-family: var(--textitle);
   font-size: 56px;
   font-weight: 600;
   line-height: 64px;
 }
 
 h3{
-  font-family: 'Epilogue', sans-serif;
+  font-family: var(--textitle);
   font-size: 40px;
   font-weight: 600;
   line-height: 48px;
 }
 
 h4{
-  font-family: 'Epilogue', sans-serif;
+  font-family: var(--textitle);
   font-size: 32px;
   font-weight: 600;
   line-height: 40px;
 }
 
 p, a, li, span{
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--textdesc);
   text-decoration: none;
   font-weight: 400;
   list-style: none;
@@ -103,4 +106,32 @@ p, a, li, span{
 .extraInfo{
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+}
+
+.nav-project-aside{
+  overflow-y: scroll;
+}
+
+.nav-project-aside::-webkit-scrollbar{
+  width: 4px;
+  border-radius: 8px;
+  background-color: #037171;
+}
+
+.nav-project-aside::-webkit-scrollbar-thumb{
+  background-color: #037171;
+  border-radius: 8px;
+  width: 8px;
+}
+
+.item-time{
+  color: var(--thircolor);
+  font-family: var(--textdesc);
+}
+
+.item-actual-time{
+  color: var(--secdcolor);
+  font-size: 24px;
+  font-weight: 600;
+  font-family: var(--textdesc);
 }

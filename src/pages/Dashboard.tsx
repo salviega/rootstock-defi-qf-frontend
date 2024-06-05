@@ -36,6 +36,8 @@ export default function Dashboard(): JSX.Element {
 
 	const projects: ProjectModel[] = lastRound.projects || []
 
+	console.log(projects);
+
 	useEffect(() => {
 		if (address) {
 			dispatch(getERC20Details(address as string))
@@ -69,7 +71,7 @@ export default function Dashboard(): JSX.Element {
 							activeLayout !== 'faucet' &&
 							activeLayout !== 'dashboard' &&
 							activeLayout !== 'create a new project' &&
-							projects.map((project: ProjectModel, index: number) => (
+							projects?.length > 0 && projects?.map((project: ProjectModel, index: number) => (
 								<Project key={index} project={project} />
 							))}
 					</>
