@@ -5,7 +5,7 @@ import Views from './Aside/Views'
 
 export default function Aside(): JSX.Element {
 	return (
-		<aside className='aside__container flex flex-col items-center justify-between w-[32%] h-full gap-8 bg-secdcolor py-8 rounded-lg'>
+		<aside className='aside__container flex flex-col items-center justify-between w-[32%] h-full gap-4 bg-secdcolor py-4 px-3  rounded-lg'>
 			<Logo />
 			<Views />
 			<Projects />

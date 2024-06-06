@@ -53,6 +53,29 @@ p, a, li, span{
   list-style: none;
 }
 
+body{
+  overflow: hidden;
+}
+
+/*  Global Classes */
+.btn1{
+  width: fit-content;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: var(--pricolor);
+  transition: all .5s ease;
+  border: 1px solid var(--pricolor);
+}
+
+.btn1:hover, .btn1:focus, .btn1:active{
+  transform: scale(1.1);
+  color: var(--secdcolor);
+  background-color: var(--pricolor);
+  box-shadow: 0 0 10px 0 var(--pricolor);
+}
+
 /* Classes */
 .SectionWelcome__Container{
   background-image: url('./assets/img/Img-Welcome.png');
@@ -110,18 +133,17 @@ p, a, li, span{
 
 .nav-project-aside{
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .nav-project-aside::-webkit-scrollbar{
-  width: 4px;
+  width: 6px;
   border-radius: 8px;
-  background-color: #037171;
 }
 
 .nav-project-aside::-webkit-scrollbar-thumb{
-  background-color: #037171;
-  border-radius: 8px;
-  width: 8px;
+  border-radius: 12px;
+  background-color: var(--thircolor);
 }
 
 .item-time{
@@ -134,4 +156,12 @@ p, a, li, span{
   font-size: 24px;
   font-weight: 600;
   font-family: var(--textdesc);
+}
+
+/* Resposnive Designe */
+@media screen and (max-width: 1150px) {
+  .aside__container{
+    width: 45%;
+  }
+  
 }

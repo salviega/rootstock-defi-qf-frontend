@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom'
 
-import Button from '../ui/Button'
-
 export default function SectionWelcome(): JSX.Element {
 	return (
 		<section className='SectionWelcome__Container w-full h-screen bg-secdcolor'>
@@ -24,12 +22,7 @@ export default function SectionWelcome(): JSX.Element {
 						representative!
 					</p>
 					<Link to={`/dashboard`}>
-						<Button
-							bgColor='thircolor'
-							color='pricolor'
-							text='Join Now'
-							sizeFont='L'
-						/>
+						<button className="btn1">Join Now</button>
 					</Link>
 				</div>
 			</section>

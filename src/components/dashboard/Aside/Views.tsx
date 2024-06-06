@@ -24,11 +24,11 @@ export default function Views(): JSX.Element {
 		activeLayout === 'dashboard' ? 'bg-extracolor p-3' : 'item-view'
 
 	return (
-		<section className='flex flex-col items-start gap-3 w-full px-8'>
+		<section className='flex flex-col items-start gap-3 w-full h-fit'>
 			<div className='text-start w-full pb-1 border-b-2 border-thircolor'>
 				<h4 className='text-thircolor'>Views</h4>
 			</div>
-			<nav className='flex flex-col gap-5 w-full'>
+			<nav className='flex flex-col gap-5 w-full h-[180px]'>
 				<NavLink
 					to='/dashboard'
 					onClick={() => {

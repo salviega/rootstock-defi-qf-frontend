@@ -59,12 +59,12 @@ export default function Projects(): JSX.Element {
 		activeLayout === 'create-project' ? 'bg-extracolor p-3' : 'item-view'
 
 	return (
-		<section className='flex flex-col items-start gap-6 w-full h-full px-8'>
+		<section className='flex flex-col items-start gap-6 w-full h-fit'>
 			<div className='text-start w-full pb-1 border-b-2 border-thircolor'>
 				<h4 className='text-thircolor'>Projects</h4>
 			</div>
 
-			<nav className='nav-project-aside flex flex-col gap-3 w-full'>
+			<nav className='nav-project-aside flex flex-col gap-3 w-full h-[160px]'>
 				{projects?.map((project: ProjectModel, index: number) => (
 					<NavLink
 						to='/dashboard'
