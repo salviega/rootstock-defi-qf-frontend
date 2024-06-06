@@ -137,7 +137,7 @@ export default function NewProjectForm(props: Props): JSX.Element {
 						</label>
 						<input
 							type='file'
-							accept='image/png, image/jpeg'
+							accept='image/png, image/jpeg, image/webp'
 							id='banner'
 							ref={bannerRef}
 							className='w-full border-b-2 py-2 pl-2 pr-auto text-secdcolor text-fontS border-secdcolor'
@@ -152,7 +152,7 @@ export default function NewProjectForm(props: Props): JSX.Element {
 						</label>
 						<input
 							type='file'
-							accept='image/png, image/jpeg'
+							accept='image/png, image/jpeg, image/webp'
 							id='logo'
 							ref={logoRef}
 							className='w-full border-b-2 py-2 pl-2 pr-auto text-secdcolor text-fontS border-secdcolor'

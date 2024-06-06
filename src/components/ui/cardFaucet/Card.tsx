@@ -17,6 +17,8 @@ export default function Card(props: Props) {
 
 	const dispatch = useDispatch<AppDispatch>()
 
+	const isLoading: boolean = useAppSelector(state => state.ui.isLoading)
+
 	const erc20Details: ERC20Details = useAppSelector(
 		state => state.erc20Details.erc20Details
 	)
@@ -59,7 +61,7 @@ export default function Card(props: Props) {
 						color='thircolor'
 						// disabled={erc20DetailsFetched}
 						sizeFont='L'
-						text='Mint'
+						text={'Mint'}
 						hoverBgColor='thircolor'
 						hoverTextColor='white'
 						onClick={onMint}

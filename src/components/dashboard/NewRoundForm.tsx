@@ -287,7 +287,7 @@ export default function NewRoundForm(props: Props): JSX.Element {
 			>
 				<section className='w-full flex items-center justify-between'>
 					<h3 className='text-center pr-8'>New Round</h3>
-					{!round.distributed && (
+					{round.projects?.length > 0 && !round.distributed && (
 						<button
 							className={`w-fit h-fit px-5 py-3 bg-pricolor border-2 border-thircolor rounded-lg`}
 							type='button'
@@ -342,7 +342,7 @@ export default function NewRoundForm(props: Props): JSX.Element {
 						</label>
 						<input
 							type='file'
-							accept='image/png, image/jpeg'
+							accept='image/png, image/jpeg, image/webp'
 							id='banner'
 							className='w-full border-b-2 py-2 pl-2 pr-auto text-secdcolor text-fontS border-secdcolor'
 							onChange={event => {
@@ -456,7 +456,7 @@ export default function NewRoundForm(props: Props): JSX.Element {
 					type='submit'
 					className={`w-[250px] h-fit px-5 py-3 mx-auto bg-thircolor rounded-lg`}
 				>
-					<p className='text-pricolor'>Submit</p>
+					<p className='text-pricolor'>{isLoading ? 'Loading...' : 'Submit'}</p>
 				</button>
 			</form>
 		</section>

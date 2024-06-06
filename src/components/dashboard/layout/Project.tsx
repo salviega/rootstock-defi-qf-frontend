@@ -169,7 +169,7 @@ export default function Project(props: Props): JSX.Element {
 						<div className='extraInfo flex gap-12 mt-5'>
 							<div>
 								<h4>Distribute</h4>
-								<p className='text-fontM'>{project.amountDistributed} Doc</p>
+								<p className='text-fontM'>💰 {project.amountDistributed} Doc</p>
 							</div>
 							<div>
 								<h4>Media</h4>
