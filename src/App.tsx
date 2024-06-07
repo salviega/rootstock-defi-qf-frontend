@@ -111,17 +111,15 @@ function App() {
 	}, [address]) // Depend on address to re-run when it changes
 
 	return (
-		<>
-			<myContext.Provider value={value}>
-				<HashRouter>
-					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='/dashboard' element={<Dashboard />} />
-					</Routes>
-				</HashRouter>
-				<ToastContainer />
-			</myContext.Provider>
-		</>
+		<myContext.Provider value={value}>
+			<HashRouter>
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/dashboard' element={<Dashboard />} />
+				</Routes>
+			</HashRouter>
+			<ToastContainer />
+		</myContext.Provider>
 	)
 }
 

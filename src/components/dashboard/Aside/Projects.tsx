@@ -11,14 +11,11 @@ import { myContext } from '@/utils/context/context'
 
 import AddProject from '../../../assets/svg/asideComponent/addIcon.svg'
 
-import Timer from './Timer'
-
 export default function Projects(): JSX.Element {
 	const { activeLayout, setActiveLayout } = useContext(myContext)
 
 	const { address } = useAccount()
 
-	const [allocationEndTime, setAllocationEndTime] = useState<Date>(new Date())
 	const [registrationEndTime, setRegistrationEndTime] = useState<Date>(
 		new Date()
 	)
@@ -26,23 +23,15 @@ export default function Projects(): JSX.Element {
 		new Date()
 	)
 
-	const lastRound: Round = useAppSelector(state => state.round.lastRound)
-
 	const lastRoundFetched: boolean = useAppSelector(
 		state => state.round.lastRoundFetched
 	)
-	const rounds: Round[] = useAppSelector(state => state.round.rounds)
 
-	const roundsFetched: boolean = useAppSelector(
-		state => state.round.roundsFetched
-	)
+	const lastRound: Round = useAppSelector(state => state.round.lastRound)
 
 	const projects: ProjectModel[] = lastRound.projects
 
 	const getStates = async () => {
-		setAllocationEndTime(
-			new Date(convertTimestampToDate(lastRound.allocationEndTime))
-		)
 		setRegistrationEndTime(
 			new Date(convertTimestampToDate(lastRound.registrationEndTime))
 		)
@@ -65,25 +54,29 @@ export default function Projects(): JSX.Element {
 			</div>
 
 			<nav className='nav-project-aside flex flex-col gap-3 w-full h-[160px]'>
-				{projects?.map((project: ProjectModel, index: number) => (
-					<NavLink
-						to='/dashboard'
-						className={`${activeCreateProject} flex items-center w-full gap-3 rounded-lg`}
-						key={index}
-						onClick={() => {
-							setActiveLayout(project.name)
-						}}
-					>
-						<img
-							className='w-[100px] h-[70px] rounded-xl'
-							src={project.logo}
-							alt='Item 1'
-						/>
-						<span className='text-pricolor text-fontM uppercase'>
-							{project.name}
-						</span>
-					</NavLink>
-				))}
+				{!lastRoundFetched ? (
+					<p className='m-auto text-pricolor text-fontL'>{'Loading...'}</p>
+				) : (
+					projects?.map((project: ProjectModel, index: number) => (
+						<NavLink
+							to='/dashboard'
+							className={`${activeCreateProject} flex items-center w-full gap-3 rounded-lg`}
+							key={index}
+							onClick={() => {
+								setActiveLayout(project.name)
+							}}
+						>
+							<img
+								className='w-[100px] h-[70px] rounded-xl'
+								src={project.logo}
+								alt='Item 1'
+							/>
+							<span className='text-pricolor text-fontM uppercase'>
+								{project.name}
+							</span>
+						</NavLink>
+					))
+				)}
 				<>
 					{address &&
 						!lastRound.projects?.some(
