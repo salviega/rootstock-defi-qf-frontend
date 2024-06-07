@@ -39,7 +39,13 @@ const abi = [
 
 const iface = new ethers.Interface(abi)
 
-export default function NewRoundForm(): JSX.Element {
+type Props = {
+	allocationEndTime: Date
+	lastRound: Round
+}
+
+export default function NewRoundForm(props: Props): JSX.Element {
+	const { allocationEndTime, lastRound: round } = props
 	const { activePopUp, setActiveLayout } = useContext(myContext)
 
 	const { address } = useAccount()
@@ -51,8 +57,6 @@ export default function NewRoundForm(): JSX.Element {
 	const [banner, setBanner] = useState<File | null>(null)
 
 	const dispatch = useDispatch<AppThunkDispatch>()
-
-	const round: Round = useAppSelector(state => state.round.lastRound)
 
 	const form = useForm<z.infer<typeof createRoundFormSchema>>({
 		defaultValues: {
@@ -276,11 +280,13 @@ export default function NewRoundForm(): JSX.Element {
 			>
 				<section className='w-full flex items-center justify-between'>
 					<h3 className='text-center pr-8'>New Round</h3>
-					{round.projects?.length > 0 && !round.distributed && (
-						<button className='btn2' type='button' onClick={onDistribute}>
-							Distribute
-						</button>
-					)}
+					{round.projects?.length > 0 &&
+						Date.now() > allocationEndTime.getTime() &&
+						!round.distributed && (
+							<button className='btn2' type='button' onClick={onDistribute}>
+								Distribute
+							</button>
+						)}
 				</section>
 				<section className='flex justify-center flex-wrap gap-x-6 gap-y-4'>
 					<div className='flex flex-col w-[250px]'>

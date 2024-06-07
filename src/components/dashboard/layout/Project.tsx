@@ -79,12 +79,11 @@ export default function Project(props: Props): JSX.Element {
 					<div className='flex flex-row-reverse w-full justify-between pb-3 border-b-4 border-secdcolor border-dashed'>
 						<h2 className='text-secdcolor'>Vote For This Project</h2>
 					</div>
-					<section className='flex flex-col items-center w-full h-fit gap-5 mt-16'>
-						{activeProgressVote === 1 ? (
-							<CardProjectVote />
-						) : activeProgressVote === 2 ? (
+					<section className='flex flex-col items-center w-full h-fit'>
+						{activeProgressVote === 1 && <CardProjectVote />}
+						{activeProgressVote === 2 && (
 							<CardProjectDonation round={round} project={project} />
-						) : null}
+						)}
 					</section>
 				</section>
 			) : (
@@ -106,32 +105,25 @@ export default function Project(props: Props): JSX.Element {
 							<h2>{project.name}</h2>
 							<h4 className='text-textdesc'>{project.slogan}</h4>
 						</div>
-						{round.distributed && (
-							<header>
-								<h4 className=''>Distributed:</h4>
-								<h5>{project.amountDistributed}</h5>
-							</header>
-						)}
-						<div className='absolute right-0'>
-							{!round.distributed && Date.now() > allocationEndTime.getTime() && (
-								<button className='btn2'>
-									Waiting distribution
-								</button>
-							)}
+						<div className='absolute right-0 mr-9'>
+							{!round.distributed &&
+								Date.now() > allocationEndTime.getTime() && (
+									<button className='btn2'>Waiting distribution</button>
+								)}
+							{project.recipientId !== address &&
+								Date.now() > allocationStartTime.getTime() &&
+								Date.now() < allocationEndTime.getTime() && (
+									<button
+										className='btn2'
+										onClick={() => {
+											setActivePopUpVote(true)
+											setActiveProgressVote(1)
+										}}
+									>
+										Vote For Us
+									</button>
+								)}
 						</div>
-						{project.recipientId !== address &&
-							Date.now() > allocationStartTime.getTime() &&
-							Date.now() < allocationEndTime.getTime() && (
-								<button
-									onClick={() => {
-										setActivePopUpVote(true)
-										setActiveProgressVote(1)
-									}}
-									className={`w-fit h-fit px-5 py-3 bg-thircolor rounded-lg`}
-								>
-									<p className='text-pricolor text-fontL'>Vote For Us</p>
-								</button>
-							)}
 						<div></div>
 					</div>
 					<article className='my-5'>
@@ -168,20 +160,32 @@ export default function Project(props: Props): JSX.Element {
 						</div>
 						<div className='extraInfo flex gap-12 mt-5'>
 							<div>
-								<h4>Distribute</h4>
+								<h4>Distributed</h4>
 								<p className='text-fontM'>💰 {project.amountDistributed} Doc</p>
 							</div>
 							<div>
 								<h4>Media</h4>
 								<div className='flex gap-6'>
 									<a href={project.github}>
-										<img className='icon-btn' src={GithubSVG} alt='Icon Network' />
+										<img
+											className='icon-btn'
+											src={GithubSVG}
+											alt='Icon Network'
+										/>
 									</a>
 									<a href={project.twitter}>
-										<img className='icon-btn' src={TwitterSVG} alt='Icon Network' />
+										<img
+											className='icon-btn'
+											src={TwitterSVG}
+											alt='Icon Network'
+										/>
 									</a>
 									<a href={project.website}>
-										<img className='icon-btn' src={WebsiteSVG} alt='Icon Network' />
+										<img
+											className='icon-btn'
+											src={WebsiteSVG}
+											alt='Icon Network'
+										/>
 									</a>
 								</div>
 							</div>

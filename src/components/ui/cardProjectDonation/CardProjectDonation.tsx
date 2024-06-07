@@ -133,34 +133,33 @@ export default function CardProjectDonation(props: Props): JSX.Element {
 				the advance of web3 and all the team involved in the develop and
 				creation of this project.
 			</p>
-			<div className='flex flex-col w-full gap-5 mt-4 px-3'>
-				<form onSubmit={form.handleSubmit(onFundPool)}>
-					<div>
+			<div className='flex flex-col w-full mt-4 px-3 gap-5'>
+				{isNextBottomDisabled && (
+					<form onSubmit={form.handleSubmit(onFundPool)}>
 						<input
-							className='w-full border-b-2 border-secdcolor pb-2'
+							className='w-full mb-1 border-b-2 border-secdcolor pb-2'
 							type='number'
 							placeholder='Amount'
 							{...form.register('amount')}
 						/>
-					</div>
-					<div className='flex flex-col gap-3'>
+
 						<button
+							className='w-full h-fit py-3 border rounded-lg bg-thircolor text-pricolor text-fontL'
 							type='submit'
-							className='w-full h-fit px-9 py-3 bg-thircolor rounded-lg border'
 						>
-							<p className='text-pricolor text-fontL'>Accept</p>
+							Accept
 						</button>
-					</div>
-				</form>
+					</form>
+				)}
 				{!isNextBottomDisabled && (
 					<button
+						className='w-full h-fit mt-1 py-3 border rounded-lg bg-thircolor text-pricolor text-fontL'
 						onClick={() => {
 							setActivePopUpVote(false)
 							setActiveProgressVote(0)
 						}}
-						className='w-full h-fit px-9 py-3 bg-pricolor rounded-lg border-2 border-thircolor'
 					>
-						<p className='text-thircolor text-fontL'>Next</p>
+						Next
 					</button>
 				)}
 			</div>
