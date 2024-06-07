@@ -6,13 +6,12 @@ import { toast } from 'react-toastify'
 import { useAccount } from 'wagmi'
 import { z } from 'zod'
 
-import { ALLO_CONTRACT_ADDRESS } from '@/constants'
 import { getFrontendSigner } from '@/helpers'
 import { getContracts } from '@/helpers/contracts'
 import { roundsApiFirebase } from '@/middlewares/firebase/round.firebase.middleware'
 import { Project } from '@/models/project.model'
 import { Round } from '@/models/round.model'
-import { AppDispatch, useAppSelector } from '@/store'
+import { AppDispatch } from '@/store'
 import { setRound } from '@/store/slides/roundslice'
 import { setIsLoading } from '@/store/slides/uiSlice'
 import { toAbiCoder, toDecimal } from '@/utils'
@@ -24,10 +23,6 @@ import {
 } from '@/utils/variables/constants'
 import { donateFormSchema } from '@/utils/variables/constants/zod-schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-
-const abi = ['function allocate( uint256 _poolId, bytes memory _data )']
-
-const iface = new ethers.Interface(abi)
 
 type Props = {
 	project: Project
@@ -45,8 +40,6 @@ export default function CardProjectDonation(props: Props): JSX.Element {
 		useState<boolean>(true)
 
 	const dispatch = useDispatch<AppDispatch>()
-
-	const isLoading: boolean = useAppSelector(state => state.ui.isLoading)
 
 	const { allo } = getContracts()
 	const { updateRound } = roundsApiFirebase()
@@ -94,9 +87,6 @@ export default function CardProjectDonation(props: Props): JSX.Element {
 				totalPool: round.totalPool + amount,
 				donators: [...round.donators]
 			}
-
-			updatedRound.donations = updatedRound.donations + amount
-			updatedRound.totalPool = updatedRound.totalPool + amount
 
 			const isDonator: boolean = updatedRound.donators.some(
 				donator => donator === address

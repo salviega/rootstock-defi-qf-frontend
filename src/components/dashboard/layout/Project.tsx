@@ -28,7 +28,7 @@ export default function Project(props: Props): JSX.Element {
 		setActivePopUpVote
 	} = useContext(myContext)
 
-	const [copyText, setCopyText] = useState(project.recipientId)
+	const [copyText] = useState(project.recipientId)
 
 	const classDisplay = !activePopUpVote ? 'flex' : 'hidden'
 
