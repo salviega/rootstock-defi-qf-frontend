@@ -27,7 +27,7 @@ const myContext = createContext<ContextProps>({
 	activeProgressVote: 0,
 	setActiveProgressVote: () => {},
 	asideActive: false,
-	setAsideActive: () => {},
+	setAsideActive: () => {}
 })
 
 export { myContext }

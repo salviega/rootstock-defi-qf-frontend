@@ -2,40 +2,40 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Interface, type ContractRunner } from "ethers";
+import { Contract, Interface, type ContractRunner } from 'ethers'
 import type {
-  Multicall,
-  MulticallInterface,
-} from "../../../../@openzeppelin/contracts/utils/Multicall";
+	Multicall,
+	MulticallInterface
+} from '../../../../@openzeppelin/contracts/utils/Multicall'
 
 const _abi = [
-  {
-    inputs: [
-      {
-        internalType: "bytes[]",
-        name: "data",
-        type: "bytes[]",
-      },
-    ],
-    name: "multicall",
-    outputs: [
-      {
-        internalType: "bytes[]",
-        name: "results",
-        type: "bytes[]",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-] as const;
+	{
+		inputs: [
+			{
+				internalType: 'bytes[]',
+				name: 'data',
+				type: 'bytes[]'
+			}
+		],
+		name: 'multicall',
+		outputs: [
+			{
+				internalType: 'bytes[]',
+				name: 'results',
+				type: 'bytes[]'
+			}
+		],
+		stateMutability: 'nonpayable',
+		type: 'function'
+	}
+] as const
 
 export class Multicall__factory {
-  static readonly abi = _abi;
-  static createInterface(): MulticallInterface {
-    return new Interface(_abi) as MulticallInterface;
-  }
-  static connect(address: string, runner?: ContractRunner | null): Multicall {
-    return new Contract(address, _abi, runner) as unknown as Multicall;
-  }
+	static readonly abi = _abi
+	static createInterface(): MulticallInterface {
+		return new Interface(_abi) as MulticallInterface
+	}
+	static connect(address: string, runner?: ContractRunner | null): Multicall {
+		return new Contract(address, _abi, runner) as unknown as Multicall
+	}
 }

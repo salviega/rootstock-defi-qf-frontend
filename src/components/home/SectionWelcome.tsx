@@ -22,7 +22,7 @@ export default function SectionWelcome(): JSX.Element {
 						representative!
 					</p>
 					<Link to={`/dashboard`}>
-						<button className="btn1">Join Now</button>
+						<button className='btn1'>Join Now</button>
 					</Link>
 				</div>
 			</section>

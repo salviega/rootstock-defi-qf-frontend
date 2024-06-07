@@ -2,90 +2,90 @@
 /* tslint:disable */
 /* eslint-disable */
 import {
-  Contract,
-  ContractFactory,
-  ContractTransactionResponse,
-  Interface,
-} from "ethers";
-import type { Signer, ContractDeployTransaction, ContractRunner } from "ethers";
-import type { NonPayableOverrides } from "../../common";
+	Contract,
+	ContractFactory,
+	ContractTransactionResponse,
+	Interface
+} from 'ethers'
+import type { Signer, ContractDeployTransaction, ContractRunner } from 'ethers'
+import type { NonPayableOverrides } from '../../common'
 import type {
-  GenerateProfileId,
-  GenerateProfileIdInterface,
-} from "../../contracts/GenerateProfileId";
+	GenerateProfileId,
+	GenerateProfileIdInterface
+} from '../../contracts/GenerateProfileId'
 
 const _abi = [
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_nonce",
-        type: "uint256",
-      },
-      {
-        internalType: "address",
-        name: "_owner",
-        type: "address",
-      },
-    ],
-    name: "generateProfileId",
-    outputs: [
-      {
-        internalType: "bytes32",
-        name: "",
-        type: "bytes32",
-      },
-    ],
-    stateMutability: "pure",
-    type: "function",
-  },
-] as const;
+	{
+		inputs: [
+			{
+				internalType: 'uint256',
+				name: '_nonce',
+				type: 'uint256'
+			},
+			{
+				internalType: 'address',
+				name: '_owner',
+				type: 'address'
+			}
+		],
+		name: 'generateProfileId',
+		outputs: [
+			{
+				internalType: 'bytes32',
+				name: '',
+				type: 'bytes32'
+			}
+		],
+		stateMutability: 'pure',
+		type: 'function'
+	}
+] as const
 
 const _bytecode =
-  "0x608060405234801561001057600080fd5b5061010b806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063d70ef2f214602d575b600080fd5b603c6038366004609b565b604e565b60405190815260200160405180910390f35b60008282604051602001607d92919091825260601b6bffffffffffffffffffffffff1916602082015260340190565b60405160208183030381529060405280519060200120905092915050565b6000806040838503121560ad57600080fd5b8235915060208301356001600160a01b038116811460ca57600080fd5b80915050925092905056fea2646970667358221220d5b24e6ded1f996102ac8ec376f0617acd41b27ff97193c809205d9cc67fd68e64736f6c63430008140033";
+	'0x608060405234801561001057600080fd5b5061010b806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063d70ef2f214602d575b600080fd5b603c6038366004609b565b604e565b60405190815260200160405180910390f35b60008282604051602001607d92919091825260601b6bffffffffffffffffffffffff1916602082015260340190565b60405160208183030381529060405280519060200120905092915050565b6000806040838503121560ad57600080fd5b8235915060208301356001600160a01b038116811460ca57600080fd5b80915050925092905056fea2646970667358221220d5b24e6ded1f996102ac8ec376f0617acd41b27ff97193c809205d9cc67fd68e64736f6c63430008140033'
 
 type GenerateProfileIdConstructorParams =
-  | [signer?: Signer]
-  | ConstructorParameters<typeof ContractFactory>;
+	| [signer?: Signer]
+	| ConstructorParameters<typeof ContractFactory>
 
 const isSuperArgs = (
-  xs: GenerateProfileIdConstructorParams
-): xs is ConstructorParameters<typeof ContractFactory> => xs.length > 1;
+	xs: GenerateProfileIdConstructorParams
+): xs is ConstructorParameters<typeof ContractFactory> => xs.length > 1
 
 export class GenerateProfileId__factory extends ContractFactory {
-  constructor(...args: GenerateProfileIdConstructorParams) {
-    if (isSuperArgs(args)) {
-      super(...args);
-    } else {
-      super(_abi, _bytecode, args[0]);
-    }
-  }
+	constructor(...args: GenerateProfileIdConstructorParams) {
+		if (isSuperArgs(args)) {
+			super(...args)
+		} else {
+			super(_abi, _bytecode, args[0])
+		}
+	}
 
-  override getDeployTransaction(
-    overrides?: NonPayableOverrides & { from?: string }
-  ): Promise<ContractDeployTransaction> {
-    return super.getDeployTransaction(overrides || {});
-  }
-  override deploy(overrides?: NonPayableOverrides & { from?: string }) {
-    return super.deploy(overrides || {}) as Promise<
-      GenerateProfileId & {
-        deploymentTransaction(): ContractTransactionResponse;
-      }
-    >;
-  }
-  override connect(runner: ContractRunner | null): GenerateProfileId__factory {
-    return super.connect(runner) as GenerateProfileId__factory;
-  }
+	override getDeployTransaction(
+		overrides?: NonPayableOverrides & { from?: string }
+	): Promise<ContractDeployTransaction> {
+		return super.getDeployTransaction(overrides || {})
+	}
+	override deploy(overrides?: NonPayableOverrides & { from?: string }) {
+		return super.deploy(overrides || {}) as Promise<
+			GenerateProfileId & {
+				deploymentTransaction(): ContractTransactionResponse
+			}
+		>
+	}
+	override connect(runner: ContractRunner | null): GenerateProfileId__factory {
+		return super.connect(runner) as GenerateProfileId__factory
+	}
 
-  static readonly bytecode = _bytecode;
-  static readonly abi = _abi;
-  static createInterface(): GenerateProfileIdInterface {
-    return new Interface(_abi) as GenerateProfileIdInterface;
-  }
-  static connect(
-    address: string,
-    runner?: ContractRunner | null
-  ): GenerateProfileId {
-    return new Contract(address, _abi, runner) as unknown as GenerateProfileId;
-  }
+	static readonly bytecode = _bytecode
+	static readonly abi = _abi
+	static createInterface(): GenerateProfileIdInterface {
+		return new Interface(_abi) as GenerateProfileIdInterface
+	}
+	static connect(
+		address: string,
+		runner?: ContractRunner | null
+	): GenerateProfileId {
+		return new Contract(address, _abi, runner) as unknown as GenerateProfileId
+	}
 }
