@@ -7,10 +7,6 @@ import { convertTimestampToDate } from '@/utils'
 import Timer from './Aside/Timer'
 
 export default function Nav(): JSX.Element {
-	const [allocationEndTime, setAllocationEndTime] = useState<Date>(new Date())
-	const [allocationStartTime, setAllocationStartTime] = useState<Date>(
-		new Date()
-	)
 	const [registrationStartTime, setRegistrationStartTime] = useState<Date>(
 		new Date()
 	)
@@ -19,17 +15,12 @@ export default function Nav(): JSX.Element {
 	)
 
 	const lastRound: Round = useAppSelector(state => state.round.lastRound)
+
 	const lastRoundFetched: boolean = useAppSelector(
 		state => state.round.lastRoundFetched
 	)
 
 	const getStates = async () => {
-		setAllocationEndTime(
-			new Date(convertTimestampToDate(lastRound.allocationEndTime))
-		)
-		setAllocationStartTime(
-			new Date(convertTimestampToDate(lastRound.allocationStartTime))
-		)
 		setRegistrationEndTime(
 			new Date(convertTimestampToDate(lastRound.registrationEndTime))
 		)
@@ -45,10 +36,8 @@ export default function Nav(): JSX.Element {
 	}, [lastRoundFetched, lastRound])
 
 	return (
-		<nav className='dashboard__container--nav flex items-center w-full h-[100px] px-4 gap-8 rounded-lg'>
-			<li>
-				<Timer />
-			</li>
+		<nav className='dashboard__container--nav flex justify-around items-center h-[100px] px-4 gap-3 rounded-lg'>
+			<Timer />
 			<li>
 				<div className='w-fit border-b-2 border-secdcolor'>
 					<span className='text-secdcolor text-fontL font-semibold'>

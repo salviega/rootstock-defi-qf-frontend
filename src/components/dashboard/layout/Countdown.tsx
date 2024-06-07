@@ -20,16 +20,16 @@ function Timer(props: {
 
 	return (
 		<section className='flex gap-2'>
-			<div className='flex flex-col items-center justify-center min-w-[30px]'>
+			<div className='flex items-center justify-center min-w-[30px]'>
 				<h5 className='item-time'>{days}</h5>
 			</div>
-			<div className='flex flex-col items-center justify-center min-w-[30px]'>
+			<div className='flex items-center justify-center min-w-[30px]'>
 				<h5 className='item-time'>{hours}</h5>
 			</div>
-			<div className='flex flex-col items-center justify-center min-w-[30px]'>
+			<div className='flex items-center justify-center min-w-[30px]'>
 				<h5 className='item-time'>{minutes}</h5>
 			</div>
-			<div className='flex flex-col items-center justify-center min-w-[30px]'>
+			<div className='flex items-center justify-center min-w-[30px]'>
 				<h5 className='item-time'>{seconds}</h5>
 			</div>
 		</section>

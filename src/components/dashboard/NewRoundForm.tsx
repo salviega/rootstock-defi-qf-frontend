@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import { AddressLike, BytesLike, ethers, MaxUint256 } from 'ethers'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { useAccount } from 'wagmi'
 import { z } from 'zod'
@@ -38,32 +39,20 @@ const abi = [
 
 const iface = new ethers.Interface(abi)
 
-type Props = {
-	dispatch: AppThunkDispatch
-	isLoading: boolean
-}
-
-export default function NewRoundForm(props: Props): JSX.Element {
-	const { setActiveLayout } = useContext(myContext)
+export default function NewRoundForm(): JSX.Element {
+	const { activePopUp, setActiveLayout } = useContext(myContext)
 
 	const { address } = useAccount()
 
-	const { updateRound } = roundsApiFirebase()
+	const { allo, doCMock, qVSimpleStrategy } = getContracts()
 
-	const { dispatch, isLoading } = props
+	const { addRound, getRoundsLength, updateRound } = roundsApiFirebase()
 
 	const [banner, setBanner] = useState<File | null>(null)
 
-	const { allo, doCMock, qVSimpleStrategy } = getContracts()
-	const { addRound, getRoundsLength } = roundsApiFirebase()
-
-	const { activePopUp, setActivePopUp } = useContext(myContext)
+	const dispatch = useDispatch<AppThunkDispatch>()
 
 	const round: Round = useAppSelector(state => state.round.lastRound)
-
-	const lastRoundFetched: boolean = useAppSelector(
-		state => state.round.lastRoundFetched
-	)
 
 	const form = useForm<z.infer<typeof createRoundFormSchema>>({
 		defaultValues: {
@@ -81,8 +70,8 @@ export default function NewRoundForm(props: Props): JSX.Element {
 		values: z.infer<typeof createRoundFormSchema>
 	) => {
 		try {
-			dispatch(setIsLoading(true))
-			dispatch(setRoundFetched(false))
+			// dispatch(setIsLoading(true))
+			// dispatch(setRoundFetched(false))
 			const web3Signer: ethers.JsonRpcSigner = await getFrontendSigner()
 
 			const profileId: BytesLike = ALLO_PROFILE_ID
@@ -288,11 +277,7 @@ export default function NewRoundForm(props: Props): JSX.Element {
 				<section className='w-full flex items-center justify-between'>
 					<h3 className='text-center pr-8'>New Round</h3>
 					{round.projects?.length > 0 && !round.distributed && (
-						<button
-							className='btn2'
-							type='button'
-							onClick={onDistribute}
-						>
+						<button className='btn2' type='button' onClick={onDistribute}>
 							Distribute
 						</button>
 					)}
@@ -452,11 +437,8 @@ export default function NewRoundForm(props: Props): JSX.Element {
 						)}
 					</div>
 				</section>
-				<button
-					type='submit'
-					className='btn3 mx-auto my-0'
-				>
-					{isLoading ? 'Loading...' : 'Create Round'}
+				<button type='submit' className='btn3 mx-auto my-0'>
+					Create Round
 				</button>
 			</form>
 		</section>
