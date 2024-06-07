@@ -13,15 +13,10 @@ export default function Home(): JSX.Element {
 			</div>
 			<article className='flex flex-col gap-8'>
 				<div className='flex items-center gap-3'>
-					<div className='relative flex justify-center w-fit p-3 bg-secdcolor rounded-full'>
+					<div className='flex justify-center w-fit p-3 bg-secdcolor rounded-full'>
 						<img src={IconStep1} alt='Step 1' />
-						<img
-							className='absolute bottom-[-15px] rotate-90'
-							src={line1}
-							alt='Decoration Line'
-						/>
 					</div>
-					<div>
+					<div className='w-10/12'>
 						<h4 className='text-secdcolor'>Connect your wallet</h4>
 						<p className='text-secdcolor text-fontM'>
 							Register and connect your digital wallet to start participating in
@@ -30,15 +25,10 @@ export default function Home(): JSX.Element {
 					</div>
 				</div>
 				<div className='flex items-center gap-3'>
-					<div className='relative flex justify-center w-fit p-3 bg-secdcolor rounded-full'>
+					<div className='flex justify-center w-fit p-3 bg-secdcolor rounded-full'>
 						<img src={IconStep2} alt='Step 2' />
-						<img
-							className='absolute bottom-[-15px] rotate-90'
-							src={line1}
-							alt='Decoration Line'
-						/>
 					</div>
-					<div>
+					<div className='w-10/12'>
 						<h4 className='text-secdcolor'>Choose one project</h4>
 						<p className='text-secdcolor text-fontM'>
 							Explore our list of projects and choose those that you are most
@@ -47,15 +37,10 @@ export default function Home(): JSX.Element {
 					</div>
 				</div>
 				<div className='flex items-center gap-3'>
-					<div className='relative flex justify-center w-fit p-3 bg-secdcolor rounded-full'>
-						<img className='w-[95px] h-[65px]' src={IconStep3} alt='Step 3' />
-						<img
-							className='absolute bottom-[-15px] rotate-90'
-							src={line1}
-							alt='Decoration Line'
-						/>
+					<div className='flex justify-center w-fit p-3 bg-secdcolor rounded-full'>
+						<img src={IconStep3} alt='Step 3' />
 					</div>
-					<div>
+					<div className='w-10/12'>
 						<h4 className='text-secdcolor'>
 							Research and read about that project
 						</h4>
@@ -67,15 +52,10 @@ export default function Home(): JSX.Element {
 					</div>
 				</div>
 				<div className='flex items-center gap-3'>
-					<div className='relative flex justify-center w-fit p-3 bg-secdcolor rounded-full'>
+					<div className='flex justify-center w-fit p-3 bg-secdcolor rounded-full'>
 						<img src={IconStep4} alt='Step 4' />
-						<img
-							className='absolute bottom-[-15px] rotate-90'
-							src={line1}
-							alt='Decoration Line'
-						/>
 					</div>
-					<div>
+					<div className='w-10/12'>
 						<h4 className='text-secdcolor'>Vote for your project</h4>
 						<p className='text-secdcolor text-fontM'>
 							Use our voting system to express your support for the projects you
@@ -85,9 +65,9 @@ export default function Home(): JSX.Element {
 				</div>
 				<div className='flex items-center gap-3'>
 					<div className='flex justify-center w-fit p-3 bg-secdcolor rounded-full'>
-						<img className='w-[95px] h-[65px]' src={IconStep5} alt='Step 5' />
+						<img src={IconStep5} alt='Step 5' />
 					</div>
-					<div>
+					<div className='w-10/12'>
 						<h4 className='text-secdcolor'>
 							Help the project with economic support
 						</h4>

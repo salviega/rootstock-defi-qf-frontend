@@ -45,12 +45,12 @@ export default function Nav(): JSX.Element {
 	}, [lastRoundFetched, lastRound])
 
 	return (
-		<nav className='dashboard__container--nav flex items-center justify-between w-full h-[100px] px-10 rounded-lg'>
+		<nav className='dashboard__container--nav flex items-center w-full h-[100px] px-4 gap-8 rounded-lg'>
 			<li>
 				<Timer />
 			</li>
 			<li>
-				<div className='w-fit pr-5 border-b-2 border-secdcolor'>
+				<div className='w-fit border-b-2 border-secdcolor'>
 					<span className='text-secdcolor text-fontL font-semibold'>
 						State Round
 					</span>
@@ -73,7 +73,7 @@ export default function Nav(): JSX.Element {
 				</div>
 			</li>
 			<li>
-				<div className='w-fit pr-5 border-b-2 border-secdcolor'>
+				<div className='w-fit border-b-2 border-secdcolor'>
 					<span className='text-secdcolor text-fontL font-semibold'>
 						Total In Pool
 					</span>
@@ -83,7 +83,7 @@ export default function Nav(): JSX.Element {
 				</p>
 			</li>
 			<li>
-				<div className='w-fit pr-5 border-b-2 border-secdcolor'>
+				<div className='w-fit border-b-2 border-secdcolor'>
 					<span className='text-secdcolor text-fontL font-semibold'>
 						Matching Pool
 					</span>
@@ -91,7 +91,7 @@ export default function Nav(): JSX.Element {
 				<p className='text-thircolor text-fontM'>{`${lastRound.machingPool || 0} Doc`}</p>
 			</li>
 			<li>
-				<div className='w-fit pr-5 border-b-2 border-secdcolor'>
+				<div className='w-fit border-b-2 border-secdcolor'>
 					<span className='text-secdcolor text-fontL font-semibold'>
 						Total Donations
 					</span>

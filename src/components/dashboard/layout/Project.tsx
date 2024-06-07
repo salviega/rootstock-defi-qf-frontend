@@ -89,19 +89,19 @@ export default function Project(props: Props): JSX.Element {
 				</section>
 			) : (
 				<section className={`${classDisplay} flex-col gap-5`}>
-					<figure className='relative'>
+					<figure className='relative mb-10'>
 						<img
 							className='w-full max-h-[450px] rounded-xl'
 							src={project.banner}
 							alt='Img Project'
 						/>
 						<img
-							className='absolute bottom-0 left-0 w-[200px] h-[150px] rounded-xl'
+							className='absolute bottom-[-50px] left-[-15px] w-[175px] h-[170px] rounded-full'
 							src={project.logo}
 							alt='Img logo'
 						/>
 					</figure>
-					<div className='flex justify-between items-center'>
+					<div className='relative flex items-center'>
 						<div>
 							<h2>{project.name}</h2>
 							<h4 className='text-textdesc'>{project.slogan}</h4>
@@ -112,13 +112,13 @@ export default function Project(props: Props): JSX.Element {
 								<h5>{project.amountDistributed}</h5>
 							</header>
 						)}
-						{!round.distributed && Date.now() > allocationEndTime.getTime() && (
-							<button
-								className={`w-fit h-fit px-5 py-3 bg-thircolor rounded-lg`}
-							>
-								Waiting distribution
-							</button>
-						)}
+						<div className='absolute right-0'>
+							{!round.distributed && Date.now() > allocationEndTime.getTime() && (
+								<button className='btn2'>
+									Waiting distribution
+								</button>
+							)}
+						</div>
 						{project.recipientId !== address &&
 							Date.now() > allocationStartTime.getTime() &&
 							Date.now() < allocationEndTime.getTime() && (
@@ -175,13 +175,13 @@ export default function Project(props: Props): JSX.Element {
 								<h4>Media</h4>
 								<div className='flex gap-6'>
 									<a href={project.github}>
-										<img src={GithubSVG} alt='Icon Network' />
+										<img className='icon-btn' src={GithubSVG} alt='Icon Network' />
 									</a>
 									<a href={project.twitter}>
-										<img src={TwitterSVG} alt='Icon Network' />
+										<img className='icon-btn' src={TwitterSVG} alt='Icon Network' />
 									</a>
 									<a href={project.website}>
-										<img src={WebsiteSVG} alt='Icon Network' />
+										<img className='icon-btn' src={WebsiteSVG} alt='Icon Network' />
 									</a>
 								</div>
 							</div>

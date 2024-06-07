@@ -2,6 +2,8 @@ import { useContext, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useAccount } from 'wagmi'
 
+import arrow from '../assets/svg/asideComponent/Arrow.svg'
+
 import Aside from '@/components/dashboard/Aside'
 import CreateProject from '@/components/dashboard/CreateProject'
 import Layout from '@/components/dashboard/Layout'
@@ -18,7 +20,7 @@ import { getLastRound, getRounds } from '@/store/thunks/round.thunk'
 import { myContext } from '@/utils/context/context'
 
 export default function Dashboard(): JSX.Element {
-	const { activeLayout, setActiveLayout } = useContext(myContext)
+	const { activeLayout, setActiveLayout, asideActive, setAsideActive } = useContext(myContext)
 
 	const { address } = useAccount()
 
@@ -53,9 +55,14 @@ export default function Dashboard(): JSX.Element {
 	}, [address, lastRoundFetched, roundsFetched, dispatch, setActiveLayout])
 
 	return (
-		<main className='flex gap-5 w-full h-screen p-3'>
+		<main className='main flex gap-5 w-full h-screen p-3'>
+			<aside className='aside-arrow'>
+				<button onClick={() => setAsideActive(!asideActive)}>
+					<img className={`${asideActive ? 'rotate-180' : ''}`} src={arrow} alt="" />
+				</button>
+			</aside>
 			<Aside />
-			<section className='flex flex-col w-full gap-5'>
+			<section className='container-layout flex flex-col w-full gap-5'>
 				<Nav />
 				<Layout>
 					<>

@@ -289,11 +289,11 @@ export default function NewRoundForm(props: Props): JSX.Element {
 					<h3 className='text-center pr-8'>New Round</h3>
 					{round.projects?.length > 0 && !round.distributed && (
 						<button
-							className={`w-fit h-fit px-5 py-3 bg-pricolor border-2 border-thircolor rounded-lg`}
+							className='btn2'
 							type='button'
 							onClick={onDistribute}
 						>
-							<p className='text-thirdcolor'>Distribute</p>
+							Distribute
 						</button>
 					)}
 				</section>
@@ -454,9 +454,9 @@ export default function NewRoundForm(props: Props): JSX.Element {
 				</section>
 				<button
 					type='submit'
-					className={`w-[250px] h-fit px-5 py-3 mx-auto bg-thircolor rounded-lg`}
+					className='btn3 mx-auto my-0'
 				>
-					<p className='text-pricolor'>{isLoading ? 'Loading...' : 'Submit'}</p>
+					{isLoading ? 'Loading...' : 'Create Round'}
 				</button>
 			</form>
 		</section>

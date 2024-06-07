@@ -16,6 +16,7 @@ function App() {
 	const [isListening, setIsListening] = useState<boolean>(true)
 
 	const [activeLayout, setActiveLayout] = useState('home')
+	const [asideActive, setAsideActive] = useState(false)
 	const [isClicked, setIsClicked] = useState(0)
 	const [activePopUp, setActivePopUp] = useState(false)
 	const [activePopUpVote, setActivePopUpVote] = useState(false)
@@ -24,6 +25,8 @@ function App() {
 	const value = {
 		activeLayout,
 		setActiveLayout,
+		asideActive,
+		setAsideActive,
 		isClicked,
 		setIsClicked,
 		activePopUp,

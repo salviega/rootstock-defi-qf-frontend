@@ -57,15 +57,7 @@ export default function Card(props: Props) {
 							<p>{erc20Details.allowance}</p>
 						</div>
 					</div>
-					<Button
-						color='thircolor'
-						// disabled={erc20DetailsFetched}
-						sizeFont='L'
-						text={'Mint'}
-						hoverBgColor='thircolor'
-						hoverTextColor='white'
-						onClick={onMint}
-					/>
+					<button className='btn2' onClick={onMint}>Mint</button>
 				</div>
 			) : props.number === 2 ? (
 				<div className='flex flex-col items-center max-w-[400px] gap-4 my-auto mx-0 px-4 py-6 border-2 border-secdcolor rounded-lg'>
@@ -75,14 +67,7 @@ export default function Card(props: Props) {
 						(address above & below) to move test DocMock (the amount you
 						specify) from your wallet.
 					</p>
-					<Button
-						color='thircolor'
-						sizeFont='L'
-						text='Approved'
-						hoverBgColor='thircolor'
-						hoverTextColor='white'
-						onClick={onApprove}
-					/>
+					<button className='btn2' onClick={onApprove}>Approve</button>
 				</div>
 			) : props.number === 3 ? (
 				<div className='flex flex-col items-center max-w-[400px] gap-2 my-auto mx-auto px-4 py-6 border-2 border-secdcolor rounded-lg'>
@@ -93,7 +78,7 @@ export default function Card(props: Props) {
 					<p className='text-center'>
 						Go to home, now you can interact with the different projects in our
 						platform. Take your time for research and find the perfect project
-						for you but don’t forget the time. Recommend this app if you find it
+						for you but don't forget the time. Recommend this app if you find it
 						useful or interest
 					</p>
 					<div className='flex gap-5 mx-auto mt-4'>
