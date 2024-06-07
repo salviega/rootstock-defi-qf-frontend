@@ -12,7 +12,7 @@ export default function Faucet(): JSX.Element {
 			<div className='flex flex-row-reverse w-full justify-between pb-3 border-b-4 border-secdcolor border-dashed'>
 				<h2 className='text-secdcolor'>Faucet</h2>
 			</div>
-			<section className='flex flex-col items-center w-full h-fit gap-5 mt-16'>
+			<section className='flex flex-col items-center w-full h-fit gap-5 mt-9'>
 				<ToggleFaucet />
 				{isClicked === 0 ? <Card number={1} /> : <Card number={2} />}
 			</section>

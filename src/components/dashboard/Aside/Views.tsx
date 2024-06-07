@@ -18,8 +18,10 @@ export default function Views(): JSX.Element {
 	const { activeLayout, setActiveLayout } = useContext(myContext)
 
 	const activeHome = activeLayout === 'home' ? 'bg-extracolor p-3' : 'item-view'
+
 	const activeFaucet =
 		activeLayout === 'faucet' ? 'bg-extracolor p-3' : 'item-view'
+
 	const activeDashboard =
 		activeLayout === 'dashboard' ? 'bg-extracolor p-3' : 'item-view'
 

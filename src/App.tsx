@@ -80,7 +80,6 @@ function App() {
 			}
 		}
 
-		// Add event listeners
 		if (isListening) {
 			ethereum.on('accountsChanged', handleAccountsChanged)
 		}
@@ -99,7 +98,6 @@ function App() {
 			}
 		})()
 
-		// Remove event listeners on cleanup
 		return () => {
 			if (ethereum.removeListener) {
 				ethereum.removeListener('accountsChanged', handleAccountsChanged)
@@ -108,7 +106,7 @@ function App() {
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [address]) // Depend on address to re-run when it changes
+	}, [address])
 
 	return (
 		<myContext.Provider value={value}>

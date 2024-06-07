@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
+import Loading from '@/components/ui/loading'
 import { QUADRIKCHAIN_ADMIN_ADDRESS } from '@/constants'
 import { Project as ProjectModel } from '@/models/project.model'
 import { Round } from '@/models/round.model'
@@ -42,6 +43,7 @@ export default function Projects(): JSX.Element {
 
 	useEffect(() => {
 		getStates()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lastRound])
 
 	const activeCreateProject =
@@ -55,7 +57,7 @@ export default function Projects(): JSX.Element {
 
 			<nav className='nav-project-aside flex flex-col gap-3 w-full h-[160px]'>
 				{!lastRoundFetched ? (
-					<p className='m-auto text-pricolor text-fontL'>{'Loading...'}</p>
+					<Loading textColor='pricolor' textSize='fontL' />
 				) : (
 					projects?.map((project: ProjectModel, index: number) => (
 						<NavLink
