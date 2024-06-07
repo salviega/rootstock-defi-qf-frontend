@@ -54,7 +54,7 @@ p, a, li, span{
 }
 
 body{
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /*  Global Classes */
